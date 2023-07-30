@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:school_bills/app/data/repository/auth_repository_impl.dart';
+import 'package:school_bills/app/domain/auth_repository.dart';
+import 'package:school_bills/app/view/provider/auth_provider.dart';
 import 'package:school_bills/core/di/auth_interceptor.dart';
 import 'package:school_bills/core/services/dialog_service/dialog_service.dart';
 import 'package:school_bills/core/services/dialog_service/dialog_service_impl.dart';
-import 'package:school_bills/features/auth/data/repository/auth_repository_impl.dart';
-import 'package:school_bills/features/auth/domain/auth_repository.dart';
-import 'package:school_bills/features/auth/view/provider/auth_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;

@@ -1,9 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:school_bills/app/domain/auth_repository.dart';
+import 'package:school_bills/app/view/provider/auth_state.dart';
 import 'package:school_bills/core/di/service_locator.dart';
 import 'package:school_bills/core/services/dialog_service/dialog_service.dart';
-import 'package:school_bills/features/auth/domain/auth_repository.dart';
-
-import 'auth_state.dart';
 
 final authProvider = NotifierProvider<AuthProvider, AuthState>(
   () => sl<AuthProvider>(),

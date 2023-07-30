@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:school_bills/core/models/result.dart';
-import 'package:school_bills/features/auth/data/models/user_model.dart';
-import 'package:school_bills/features/auth/domain/auth_repository.dart';
+import 'package:school_bills/app/data/models/result.dart';
+import 'package:school_bills/app/data/models/user_model.dart';
+import 'package:school_bills/app/domain/auth_repository.dart';
 
 final class AuthRepositoryImpl implements AuthRepository {
   @override
