@@ -1,0 +1,15 @@
+targets:
+  $default:
+    builders:
+      source_gen|combining_builder:
+        generate_for:
+          - lib/**.dart
+        options:
+      freezed:
+        options:
+          field_rename: snake
+          explicit_to_json: true
+      json_serializable:
+        options:
+          field_rename: snake
+          explicit_to_json: true

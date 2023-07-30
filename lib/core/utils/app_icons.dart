@@ -1,0 +1,41 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
+
+class AppIcons {
+  static IconData get arrowBack => CupertinoIcons.back;
+  static IconData get arrowForwardIos => Iconsax.arrow_right_3;
+  static IconData get homeOl => Iconsax.home_14;
+  static IconData get home => Iconsax.home5;
+  static IconData get addOl => Iconsax.add_square;
+  static IconData get add => Iconsax.add_square5;
+  static IconData get messageOl => Iconsax.message4;
+  static IconData get message => Iconsax.message5;
+  static IconData get settingsOl => Icons.settings_outlined;
+  static IconData get gallery => Iconsax.gallery;
+  static IconData get order => Iconsax.shopping_cart5;
+  static IconData get orderOl => Iconsax.shopping_cart;
+  static IconData get delete => Iconsax.trash;
+  static IconData get edit => Iconsax.edit;
+  static IconData get user => Iconsax.user;
+  static IconData get userOl => Iconsax.user;
+  static IconData get users => Iconsax.people;
+  static IconData get share => CupertinoIcons.share;
+  static IconData get notifications => Iconsax.notification5;
+  static IconData get notificationsOl => Iconsax.notification;
+  static IconData get privacy => Iconsax.lock;
+  static IconData get rate => Iconsax.star;
+  static IconData get link => Iconsax.link_1;
+  static IconData get send => Icons.send_outlined;
+  static IconData get login => Iconsax.login;
+  static IconData get logout => Iconsax.logout;
+  static IconData get more => Icons.more_vert_rounded;
+  static IconData get info => Iconsax.info_circle;
+  static IconData get search => Iconsax.search_normal_14;
+  static IconData get done => Iconsax.check;
+  static IconData get clear => CupertinoIcons.clear;
+  static IconData get location => Iconsax.location;
+  static IconData get star => CupertinoIcons.star_fill;
+  static IconData get starOl => CupertinoIcons.star;
+  static IconData get halfStar => CupertinoIcons.star_lefthalf_fill;
+}
