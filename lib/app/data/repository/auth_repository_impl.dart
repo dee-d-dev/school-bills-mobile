@@ -16,7 +16,7 @@ final class AuthRepositoryImpl implements AuthRepository {
       return Result.success(UserModel.fromJson(data));
     } catch (error) {
       debugPrint('$error');
-      return const Result.error(CustomError.message('Failed to sign in'));
+      return Result.error(CustomError.message('Failed to sign in'));
     }
   }
 }

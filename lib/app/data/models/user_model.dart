@@ -1,15 +1,28 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-part 'generated/user_model.freezed.dart';
 part 'generated/user_model.g.dart';
 
-@freezed
-class UserModel with _$UserModel {
-  const factory UserModel({
-    required String firstName,
-    required String lastName,
-    required int age,
-  }) = _UserModel;
+@JsonSerializable(includeIfNull: false)
+class UserModel {
+  final String id;
+  final String? matricNo;
+  final String firstName;
+  final String lastName;
+  final String? faculty;
+  final String? department;
+  final String role;
+  final String email;
+
+  const UserModel({
+    required this.id,
+    required this.matricNo,
+    required this.firstName,
+    required this.lastName,
+    required this.faculty,
+    required this.department,
+    required this.role,
+    required this.email,
+  });
 
   factory UserModel.fromJson(Map<String, Object?> json) =>
       _$UserModelFromJson(json);
