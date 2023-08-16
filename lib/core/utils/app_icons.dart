@@ -5,13 +5,14 @@ import 'package:iconsax/iconsax.dart';
 class AppIcons {
   static IconData get arrowBack => CupertinoIcons.back;
   static IconData get arrowForwardIos => Iconsax.arrow_right_3;
-  static IconData get homeOl => Iconsax.home_14;
+  static IconData get homeOl => Iconsax.home_1;
   static IconData get home => Iconsax.home5;
   static IconData get addOl => Iconsax.add_square;
   static IconData get add => Iconsax.add_square5;
   static IconData get messageOl => Iconsax.message4;
   static IconData get message => Iconsax.message5;
-  static IconData get settingsOl => Icons.settings_outlined;
+  static IconData get settings => Icons.settings;
+  static IconData get settingsOl => Iconsax.setting_2;
   static IconData get gallery => Iconsax.gallery;
   static IconData get order => Iconsax.shopping_cart5;
   static IconData get orderOl => Iconsax.shopping_cart;
@@ -33,9 +34,10 @@ class AppIcons {
   static IconData get info => Iconsax.info_circle;
   static IconData get search => Iconsax.search_normal_14;
   static IconData get done => Iconsax.check;
-  static IconData get clear => CupertinoIcons.clear;
+  static IconData get transaction => Icons.data_usage_rounded;
+  static IconData get transactionOl => Icons.data_usage_outlined;
   static IconData get location => Iconsax.location;
   static IconData get star => CupertinoIcons.star_fill;
-  static IconData get starOl => CupertinoIcons.star;
-  static IconData get halfStar => CupertinoIcons.star_lefthalf_fill;
+  static IconData get article => Iconsax.clipboard5;
+  static IconData get articleOl => Iconsax.clipboard;
 }

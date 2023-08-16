@@ -14,24 +14,24 @@ class Config {
 
   static double get width => 1.sw;
 
-  static TextStyle get h1 => GoogleFonts.sora(
-        fontSize: 30.sp,
+  static TextStyle get h1 => GoogleFonts.dmSans(
+        fontSize: 24.sp,
         fontWeight: FontWeight.w700,
         height: 1.6,
       );
 
-  static TextStyle get b1 => GoogleFonts.sora(
+  static TextStyle get b1 => GoogleFonts.dmSans(
         fontSize: 16.sp,
         height: 1.0,
       );
 
-  static TextStyle get b1b => GoogleFonts.sora(
+  static TextStyle get b1b => GoogleFonts.dmSans(
         fontSize: 16.sp,
         fontWeight: FontWeight.w700,
         height: 1.0,
       );
 
-  static TextStyle get b2 => GoogleFonts.sora(
+  static TextStyle get b2 => GoogleFonts.dmSans(
         fontSize: 14.sp,
         height: 1.0,
       );

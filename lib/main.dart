@@ -39,7 +39,7 @@ class MainApp extends StatelessWidget {
       builder: (context, child) {
         return AppAware(
           child: MaterialApp.router(
-            title: 'Cake Connect',
+            title: 'School Bills',
             theme: AppTheme.lightTheme(),
             darkTheme: AppTheme.darkTheme(),
             themeMode: AppTheme.themeMode(context),

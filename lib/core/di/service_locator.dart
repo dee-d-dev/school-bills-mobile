@@ -15,15 +15,12 @@ Future<void> initServiceLocator() async {
 
   const timeout = Duration(minutes: 1);
   final Dio dio = Dio(BaseOptions(
-    baseUrl: 'baseUrl',
+    baseUrl: 'https://www.google.com',
     receiveTimeout: timeout,
     connectTimeout: timeout,
     sendTimeout: timeout,
     contentType: 'application/json',
   ));
-
-  final interceptor = AuthInterceptor(preferences: sl());
-  dio.interceptors.add(interceptor);
 
   // Feature: Auth
   // Provider
@@ -38,4 +35,6 @@ Future<void> initServiceLocator() async {
 
   // Services
   sl.registerLazySingleton<DialogService>(() => DialogServiceImpl());
+  final interceptor = AuthInterceptor(preferences: sl());
+  dio.interceptors.add(interceptor);
 }

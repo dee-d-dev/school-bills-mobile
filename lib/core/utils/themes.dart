@@ -14,7 +14,7 @@ class AppTheme {
       SchedulerBinding.instance.platformDispatcher.platformBrightness;
 
   static ThemeData lightTheme() => FlexThemeData.light(
-        scheme: FlexScheme.sakura,
+        scheme: FlexScheme.purpleM3,
         surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
         blendLevel: 7,
         subThemesData: const FlexSubThemesData(
@@ -26,11 +26,11 @@ class AppTheme {
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
         useMaterial3: true,
         swapLegacyOnMaterial3: true,
-        fontFamily: GoogleFonts.sora().fontFamily,
+        fontFamily: GoogleFonts.dmSans().fontFamily,
       );
 
   static ThemeData darkTheme() => FlexThemeData.dark(
-        scheme: FlexScheme.sakura,
+        scheme: FlexScheme.purpleM3,
         surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
         blendLevel: 13,
         subThemesData: const FlexSubThemesData(
@@ -41,7 +41,7 @@ class AppTheme {
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
         useMaterial3: true,
         swapLegacyOnMaterial3: true,
-        fontFamily: GoogleFonts.sora().fontFamily,
+        fontFamily: GoogleFonts.dmSans().fontFamily,
       );
 
   static ThemeMode themeMode(BuildContext context) =>

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:school_bills/core/utils/config.dart';
 
 enum ButtonType { filled, outlined, elevated, text }
 
@@ -24,7 +25,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final child = Padding(
       padding: EdgeInsets.all(cPadding),
-      child: Text(text),
+      child: Text(text, style: Config.b1.copyWith(fontWeight: FontWeight.w600)),
     );
 
     return Padding(

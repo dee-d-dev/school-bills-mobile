@@ -30,11 +30,11 @@ class AuthInterceptor extends InterceptorsWrapper {
   }
 
   @override
-  void onError(DioException exception, ErrorInterceptorHandler handler) async {
-    if (exception.response?.statusCode == 401 /* unauthorized */) {
+  void onError(DioException err, ErrorInterceptorHandler handler) async {
+    if (err.response?.statusCode == 401 /* unauthorized */) {
       // logout
     }
 
-    super.onError(exception, handler);
+    super.onError(err, handler);
   }
 }
