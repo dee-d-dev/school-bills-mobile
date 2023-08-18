@@ -5,9 +5,15 @@ abstract class Routes {
   static String adminSignup = 'admin_signup';
 
   static String home = '/home';
+
   static String transaction = '/transaction';
+  static String reciept = 'reciept';
+
   static String article = '/article';
+
   static String settings = '/settings';
+  static String profile = 'profile';
+  static String changePassword = 'change_password';
 }
 
 extension Name on String {

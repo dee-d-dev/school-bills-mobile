@@ -5,14 +5,14 @@ import 'package:school_bills/core/utils/config.dart';
 import 'package:school_bills/core/widgets/custom_button.dart';
 import 'package:school_bills/core/widgets/custom_text_field.dart';
 
-class StudentSignupScreen extends StatefulWidget {
-  const StudentSignupScreen({super.key});
+class ChangePasswordScreen extends StatefulWidget {
+  const ChangePasswordScreen({super.key});
 
   @override
-  State<StudentSignupScreen> createState() => _StudentSignupScreenState();
+  State<ChangePasswordScreen> createState() => _LoginScreenState();
 }
 
-class _StudentSignupScreenState extends State<StudentSignupScreen> {
+class _LoginScreenState extends State<ChangePasswordScreen> {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -26,36 +26,16 @@ class _StudentSignupScreenState extends State<StudentSignupScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Student sign up', style: Config.h3),
+              Text('Change password', style: Config.h3),
               Config.vGap20,
               CustomTextField(
                 onChanged: (val) {},
-                hint: 'Name',
+                hint: 'Current password',
               ),
               Config.vGap14,
               CustomTextField(
                 onChanged: (val) {},
-                hint: 'Department',
-              ),
-              Config.vGap14,
-              CustomTextField(
-                onChanged: (val) {},
-                hint: 'Faculty',
-              ),
-              Config.vGap14,
-              CustomTextField(
-                onChanged: (val) {},
-                hint: 'Matriculation Number',
-              ),
-              Config.vGap14,
-              CustomTextField(
-                onChanged: (val) {},
-                hint: 'Email',
-              ),
-              Config.vGap14,
-              CustomTextField(
-                onChanged: (val) {},
-                hint: 'Password',
+                hint: 'New password',
               )
             ],
           ),

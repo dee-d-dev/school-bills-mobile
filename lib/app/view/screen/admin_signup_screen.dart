@@ -26,7 +26,7 @@ class _AdminSignupScreenState extends State<AdminSignupScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Admin sign up', style: Config.h1),
+              Text('Admin sign up', style: Config.h3),
               Config.vGap20,
               CustomTextField(
                 onChanged: (val) {},

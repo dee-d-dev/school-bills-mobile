@@ -15,23 +15,46 @@ class Config {
   static double get width => 1.sw;
 
   static TextStyle get h1 => GoogleFonts.dmSans(
-        fontSize: 24.sp,
+        fontSize: 32.sp,
+        fontWeight: FontWeight.w700,
+        height: 1.6,
+      );
+
+  static TextStyle get h2 => GoogleFonts.dmSans(
+        fontSize: 30.sp,
+        fontWeight: FontWeight.w700,
+        height: 1.6,
+      );
+
+  static TextStyle get h3 => GoogleFonts.dmSans(
+        fontSize: 28.sp,
         fontWeight: FontWeight.w700,
         height: 1.6,
       );
 
   static TextStyle get b1 => GoogleFonts.dmSans(
-        fontSize: 16.sp,
+        fontSize: 18.sp,
         height: 1.0,
       );
 
   static TextStyle get b1b => GoogleFonts.dmSans(
-        fontSize: 16.sp,
+        fontSize: 18.sp,
         fontWeight: FontWeight.w700,
         height: 1.0,
       );
 
   static TextStyle get b2 => GoogleFonts.dmSans(
+        fontSize: 16.sp,
+        height: 1.0,
+      );
+
+  static TextStyle get b2b => GoogleFonts.dmSans(
+        fontSize: 16.sp,
+        height: 1.0,
+        fontWeight: FontWeight.w700,
+      );
+
+  static TextStyle get b3 => GoogleFonts.dmSans(
         fontSize: 14.sp,
         height: 1.0,
       );
@@ -58,6 +81,7 @@ class Config {
   static Widget get vGap10 => const SizedBox(height: 10);
   static Widget get vGap14 => const SizedBox(height: 14);
   static Widget get vGap20 => const SizedBox(height: 20);
+  static Widget get vGap30 => const SizedBox(height: 30);
 
   static Widget get mediumVGap => SizedBox(height: 1.sh * 0.05);
 

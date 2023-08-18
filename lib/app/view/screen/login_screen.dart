@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Log in', style: Config.h1),
+              Text('Log in', style: Config.h3),
               Config.vGap20,
               CustomTextField(
                 onChanged: (val) {},

@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:school_bills/app/view/screen/admin_signup_screen.dart';
 import 'package:school_bills/app/view/screen/auth_screen.dart';
+import 'package:school_bills/app/view/screen/change_password_screen.dart';
 import 'package:school_bills/app/view/screen/home_screen.dart';
 import 'package:school_bills/app/view/screen/index_screen.dart';
 import 'package:school_bills/app/view/screen/login_screen.dart';
-import 'package:school_bills/app/view/screen/search_screen.dart';
+import 'package:school_bills/app/view/screen/profile_screen.dart';
+import 'package:school_bills/app/view/screen/reciept_screen.dart';
+import 'package:school_bills/app/view/screen/article_screen.dart';
 import 'package:school_bills/app/view/screen/setting_screen.dart';
 import 'package:school_bills/app/view/screen/student_signup_screen.dart';
 import 'package:school_bills/app/view/screen/transaction_screen.dart';
@@ -82,8 +85,13 @@ abstract class AppRoute {
                 name: Routes.transaction.routeName,
                 pageBuilder: (context, state) =>
                     pushPage(const TransactionScreen()),
-                routes: const [
-                  // child route
+                routes: [
+                  GoRoute(
+                    path: Routes.reciept,
+                    name: Routes.reciept.routeName,
+                    pageBuilder: (context, state) =>
+                        pushPage(const RecieptScreen()),
+                  ),
                 ],
               ),
             ],
@@ -110,8 +118,19 @@ abstract class AppRoute {
                 name: Routes.settings.routeName,
                 pageBuilder: (context, state) =>
                     pushPage(const SettingScreen()),
-                routes: const [
-                  // child route
+                routes: [
+                  GoRoute(
+                    path: Routes.profile,
+                    name: Routes.profile.routeName,
+                    pageBuilder: (context, state) =>
+                        pushPage(const ProfileScreen()),
+                  ),
+                  GoRoute(
+                    path: Routes.changePassword,
+                    name: Routes.changePassword.routeName,
+                    pageBuilder: (context, state) =>
+                        pushPage(const ChangePasswordScreen()),
+                  ),
                 ],
               ),
             ],
