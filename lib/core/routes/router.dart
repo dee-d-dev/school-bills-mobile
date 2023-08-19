@@ -1,18 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:school_bills/app/view/screen/admin_signup_screen.dart';
-import 'package:school_bills/app/view/screen/auth_screen.dart';
-import 'package:school_bills/app/view/screen/change_password_screen.dart';
-import 'package:school_bills/app/view/screen/home_screen.dart';
-import 'package:school_bills/app/view/screen/index_screen.dart';
-import 'package:school_bills/app/view/screen/login_screen.dart';
-import 'package:school_bills/app/view/screen/profile_screen.dart';
-import 'package:school_bills/app/view/screen/reciept_screen.dart';
-import 'package:school_bills/app/view/screen/article_screen.dart';
-import 'package:school_bills/app/view/screen/setting_screen.dart';
-import 'package:school_bills/app/view/screen/student_signup_screen.dart';
-import 'package:school_bills/app/view/screen/transaction_screen.dart';
+import 'package:school_bills/app/view/screens/admin_signup_screen.dart';
+import 'package:school_bills/app/view/screens/auth_screen.dart';
+import 'package:school_bills/app/view/screens/change_password_screen.dart';
+import 'package:school_bills/app/view/screens/create_bill_screen.dart';
+import 'package:school_bills/app/view/screens/home_screen.dart';
+import 'package:school_bills/app/view/screens/index_screen.dart';
+import 'package:school_bills/app/view/screens/login_screen.dart';
+import 'package:school_bills/app/view/screens/profile_screen.dart';
+import 'package:school_bills/app/view/screens/reciept_screen.dart';
+import 'package:school_bills/app/view/screens/article_screen.dart';
+import 'package:school_bills/app/view/screens/setting_screen.dart';
+import 'package:school_bills/app/view/screens/student_signup_screen.dart';
+import 'package:school_bills/app/view/screens/transaction_screen.dart';
 import 'package:school_bills/core/extensions/extentions.dart';
 import 'package:school_bills/core/routes/routes.dart';
 import 'package:school_bills/core/utils/config.dart';
@@ -71,8 +72,13 @@ abstract class AppRoute {
                 path: Routes.home,
                 name: Routes.home.routeName,
                 pageBuilder: (context, state) => pushPage(const HomeScreen()),
-                routes: const [
-                  // child route
+                routes: [
+                  GoRoute(
+                    path: Routes.createBill,
+                    name: Routes.createBill.routeName,
+                    pageBuilder: (context, state) =>
+                        pushPage(const CreateBillScreen()),
+                  ),
                 ],
               ),
             ],

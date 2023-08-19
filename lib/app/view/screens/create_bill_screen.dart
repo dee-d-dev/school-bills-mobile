@@ -5,14 +5,14 @@ import 'package:school_bills/core/utils/config.dart';
 import 'package:school_bills/core/widgets/custom_button.dart';
 import 'package:school_bills/core/widgets/custom_text_field.dart';
 
-class StudentSignupScreen extends StatefulWidget {
-  const StudentSignupScreen({super.key});
+class CreateBillScreen extends StatefulWidget {
+  const CreateBillScreen({super.key});
 
   @override
-  State<StudentSignupScreen> createState() => _StudentSignupScreenState();
+  State<CreateBillScreen> createState() => _CreateBillScreenState();
 }
 
-class _StudentSignupScreenState extends State<StudentSignupScreen> {
+class _CreateBillScreenState extends State<CreateBillScreen> {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -23,14 +23,18 @@ class _StudentSignupScreenState extends State<StudentSignupScreen> {
         padding: Config.contentPadding(h: 20),
         child: Form(
           key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
             children: [
-              Text('Student sign up', style: Config.h3),
+              Text('Create bill', style: Config.h3),
               Config.vGap20,
               CustomTextField(
                 onChanged: (val) {},
-                hint: 'Name',
+                hint: 'Name of bill',
+              ),
+              Config.vGap14,
+              CustomTextField(
+                onChanged: (val) {},
+                hint: 'Amount',
               ),
               Config.vGap14,
               CustomTextField(
@@ -45,17 +49,7 @@ class _StudentSignupScreenState extends State<StudentSignupScreen> {
               Config.vGap14,
               CustomTextField(
                 onChanged: (val) {},
-                hint: 'Matriculation Number',
-              ),
-              Config.vGap14,
-              CustomTextField(
-                onChanged: (val) {},
-                hint: 'Email',
-              ),
-              Config.vGap14,
-              CustomTextField(
-                onChanged: (val) {},
-                hint: 'Password',
+                hint: 'Level',
               )
             ],
           ),

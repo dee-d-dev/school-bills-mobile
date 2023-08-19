@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:school_bills/app/view/widgets/avatar_widget.dart';
 import 'package:school_bills/app/view/widgets/bill_banner.dart';
 import 'package:school_bills/app/view/widgets/bill_modal.dart';
+import 'package:school_bills/core/routes/routes.dart';
 import 'package:school_bills/core/utils/app_icons.dart';
 import 'package:school_bills/core/utils/config.dart';
 
@@ -40,12 +42,28 @@ class HomeScreen extends StatelessWidget {
                   });
             },
           ),
+          const Divider(height: 0, thickness: 2),
+          ListTile(
+            selected: true,
+            selectedTileColor: theme.colorScheme.primary.withOpacity(0.1),
+            leading: Icon(AppIcons.hostel),
+            title: const Text('Hostel fees'),
+            subtitle: const Text('Apply for hostel space'),
+            onTap: () async {
+              await showModalBottomSheet(
+                  context: context,
+                  backgroundColor: Colors.transparent,
+                  builder: (context) {
+                    return const BillModal();
+                  });
+            },
+          ),
           Config.vGap20,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GestureDetector(
-                onTap: () {},
+                onTap: () => context.goNamed(Routes.createBill),
                 child: Container(
                   padding: Config.contentPadding(h: 20, v: 10),
                   decoration: BoxDecoration(

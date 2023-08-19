@@ -33,7 +33,8 @@ class AppIcons {
   static IconData get more => Icons.more_vert_rounded;
   static IconData get info => Iconsax.info_circle;
   static IconData get search => Iconsax.search_normal_14;
-  static IconData get school => Iconsax.bank;
+  static IconData get school => Icons.school;
+  static IconData get hostel => Icons.business;
   static IconData get transaction => Icons.data_usage_rounded;
   static IconData get transactionOl => Icons.data_usage_outlined;
   static IconData get location => Iconsax.location;

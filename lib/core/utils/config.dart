@@ -74,8 +74,10 @@ class Config {
   static bool get isMediumScreen => 1.sw > 650;
   static bool get isLargeScreen => 1.sw > 850;
 
-  static Widget get hGap5 => const SizedBox(width: 10);
+  static Widget get hGap5 => const SizedBox(width: 5);
   static Widget get hGap10 => const SizedBox(width: 10);
+  static Widget get hGap14 => const SizedBox(width: 14);
+  static Widget get hGap20 => const SizedBox(width: 20);
 
   static Widget get vGap5 => const SizedBox(height: 5);
   static Widget get vGap10 => const SizedBox(height: 10);

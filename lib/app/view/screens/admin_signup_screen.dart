@@ -5,14 +5,14 @@ import 'package:school_bills/core/utils/config.dart';
 import 'package:school_bills/core/widgets/custom_button.dart';
 import 'package:school_bills/core/widgets/custom_text_field.dart';
 
-class ChangePasswordScreen extends StatefulWidget {
-  const ChangePasswordScreen({super.key});
+class AdminSignupScreen extends StatefulWidget {
+  const AdminSignupScreen({super.key});
 
   @override
-  State<ChangePasswordScreen> createState() => _LoginScreenState();
+  State<AdminSignupScreen> createState() => _AdminSignupScreenState();
 }
 
-class _LoginScreenState extends State<ChangePasswordScreen> {
+class _AdminSignupScreenState extends State<AdminSignupScreen> {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -23,19 +23,33 @@ class _LoginScreenState extends State<ChangePasswordScreen> {
         padding: Config.contentPadding(h: 20),
         child: Form(
           key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
             children: [
-              Text('Change password', style: Config.h3),
+              Text('Admin sign up', style: Config.h3),
               Config.vGap20,
               CustomTextField(
                 onChanged: (val) {},
-                hint: 'Current password',
+                hint: 'Name',
               ),
               Config.vGap14,
               CustomTextField(
                 onChanged: (val) {},
-                hint: 'New password',
+                hint: 'Department',
+              ),
+              Config.vGap14,
+              CustomTextField(
+                onChanged: (val) {},
+                hint: 'Faculty',
+              ),
+              Config.vGap14,
+              CustomTextField(
+                onChanged: (val) {},
+                hint: 'Email',
+              ),
+              Config.vGap14,
+              CustomTextField(
+                onChanged: (val) {},
+                hint: 'Password',
               )
             ],
           ),

@@ -5,14 +5,14 @@ import 'package:school_bills/core/utils/config.dart';
 import 'package:school_bills/core/widgets/custom_button.dart';
 import 'package:school_bills/core/widgets/custom_text_field.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class StudentSignupScreen extends StatefulWidget {
+  const StudentSignupScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<StudentSignupScreen> createState() => _StudentSignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _StudentSignupScreenState extends State<StudentSignupScreen> {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -23,14 +23,33 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: Config.contentPadding(h: 20),
         child: Form(
           key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
             children: [
-              Text('Log in', style: Config.h3),
+              Text('Student sign up', style: Config.h3),
               Config.vGap20,
               CustomTextField(
                 onChanged: (val) {},
-                hint: 'Email or Matric Number',
+                hint: 'Name',
+              ),
+              Config.vGap14,
+              CustomTextField(
+                onChanged: (val) {},
+                hint: 'Department',
+              ),
+              Config.vGap14,
+              CustomTextField(
+                onChanged: (val) {},
+                hint: 'Faculty',
+              ),
+              Config.vGap14,
+              CustomTextField(
+                onChanged: (val) {},
+                hint: 'Matriculation Number',
+              ),
+              Config.vGap14,
+              CustomTextField(
+                onChanged: (val) {},
+                hint: 'Email',
               ),
               Config.vGap14,
               CustomTextField(

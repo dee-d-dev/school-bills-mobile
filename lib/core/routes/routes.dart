@@ -5,6 +5,7 @@ abstract class Routes {
   static String adminSignup = 'admin_signup';
 
   static String home = '/home';
+  static String createBill = 'create_bill';
 
   static String transaction = '/transaction';
   static String reciept = 'reciept';

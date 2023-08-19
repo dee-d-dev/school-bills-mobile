@@ -9,8 +9,9 @@ class AvatarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
+      backgroundColor: Colors.grey.shade300,
       radius: Config.y(34),
-      child: Text('AA', style: Config.h2),
+      child: Text('AA', style: Config.h2.copyWith(color: Colors.grey.shade500)),
     );
   }
 }
