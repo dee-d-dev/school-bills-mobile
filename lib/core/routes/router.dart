@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:school_bills/app/view/screens/admin_signup_screen.dart';
 import 'package:school_bills/app/view/screens/auth_screen.dart';
@@ -14,50 +15,49 @@ import 'package:school_bills/app/view/screens/article_screen.dart';
 import 'package:school_bills/app/view/screens/setting_screen.dart';
 import 'package:school_bills/app/view/screens/student_signup_screen.dart';
 import 'package:school_bills/app/view/screens/transaction_screen.dart';
-import 'package:school_bills/core/extensions/extentions.dart';
 import 'package:school_bills/core/routes/routes.dart';
 import 'package:school_bills/core/utils/config.dart';
 
-abstract class AppRoute {
-  static final _rootNavigatorKey = GlobalKey<NavigatorState>();
-  static final _homeNavigatorKey = GlobalKey<NavigatorState>();
-  static final _transactionNavigatorKey = GlobalKey<NavigatorState>();
-  static final _articleNavigatorKey = GlobalKey<NavigatorState>();
-  static final _settingNavigatorKey = GlobalKey<NavigatorState>();
+final routerProvider = Provider<GoRouter>((ref) {
+  final rootNavigatorKey = GlobalKey<NavigatorState>();
+  final homeNavigatorKey = GlobalKey<NavigatorState>();
+  final transactionNavigatorKey = GlobalKey<NavigatorState>();
+  final articleNavigatorKey = GlobalKey<NavigatorState>();
+  final settingNavigatorKey = GlobalKey<NavigatorState>();
 
-  static Page<dynamic> pushPage(Widget screen) {
+  Page<dynamic> pushPage(Widget screen) {
     if (Config.isAndroid) {
       return MaterialPage<void>(child: screen);
     }
     return CupertinoPage(child: screen);
   }
 
-  static final router = GoRouter(
+  GoRoute route({
+    required String path,
+    required Widget? screen,
+    Page<dynamic> Function(BuildContext, GoRouterState)? pageBuilder,
+    List<RouteBase> routes = const <RouteBase>[],
+  }) {
+    return GoRoute(
+      path: path,
+      name: path.name,
+      pageBuilder: pageBuilder ?? (_, __) => pushPage(screen!),
+      routes: routes,
+    );
+  }
+
+  return GoRouter(
     initialLocation: Routes.auth,
-    navigatorKey: _rootNavigatorKey,
+    navigatorKey: rootNavigatorKey,
     routes: [
-      GoRoute(
+      route(
         path: Routes.auth,
-        name: Routes.auth.routeName,
-        pageBuilder: (context, state) => pushPage(const AuthScreen()),
+        screen: const AuthScreen(),
         routes: [
-          GoRoute(
-            path: Routes.login,
-            name: Routes.login.routeName,
-            pageBuilder: (context, state) => pushPage(const LoginScreen()),
-          ),
-          GoRoute(
-            path: Routes.studentSignup,
-            name: Routes.studentSignup.routeName,
-            pageBuilder: (context, state) =>
-                pushPage(const StudentSignupScreen()),
-          ),
-          GoRoute(
-            path: Routes.adminSignup,
-            name: Routes.adminSignup.routeName,
-            pageBuilder: (context, state) =>
-                pushPage(const AdminSignupScreen()),
-          ),
+          route(path: Routes.login, screen: const LoginScreen()),
+          route(
+              path: Routes.studentSignup, screen: const StudentSignupScreen()),
+          route(path: Routes.adminSignup, screen: const AdminSignupScreen()),
         ],
       ),
       StatefulShellRoute.indexedStack(
@@ -66,76 +66,59 @@ abstract class AppRoute {
         },
         branches: [
           StatefulShellBranch(
-            navigatorKey: _homeNavigatorKey,
+            navigatorKey: homeNavigatorKey,
             routes: [
-              GoRoute(
+              route(
                 path: Routes.home,
-                name: Routes.home.routeName,
-                pageBuilder: (context, state) => pushPage(const HomeScreen()),
+                screen: const HomeScreen(),
                 routes: [
-                  GoRoute(
+                  route(
                     path: Routes.createBill,
-                    name: Routes.createBill.routeName,
-                    pageBuilder: (context, state) =>
-                        pushPage(const CreateBillScreen()),
+                    screen: const CreateBillScreen(),
                   ),
                 ],
               ),
             ],
           ),
           StatefulShellBranch(
-            navigatorKey: _transactionNavigatorKey,
+            navigatorKey: transactionNavigatorKey,
             routes: [
-              GoRoute(
+              route(
                 path: Routes.transaction,
-                name: Routes.transaction.routeName,
-                pageBuilder: (context, state) =>
-                    pushPage(const TransactionScreen()),
+                screen: const TransactionScreen(),
                 routes: [
-                  GoRoute(
+                  route(
                     path: Routes.reciept,
-                    name: Routes.reciept.routeName,
-                    pageBuilder: (context, state) =>
-                        pushPage(const RecieptScreen()),
+                    screen: const RecieptScreen(),
                   ),
                 ],
               ),
             ],
           ),
           StatefulShellBranch(
-            navigatorKey: _articleNavigatorKey,
+            navigatorKey: articleNavigatorKey,
             routes: [
-              GoRoute(
+              route(
                 path: Routes.article,
-                name: Routes.article.routeName,
-                pageBuilder: (context, state) =>
-                    pushPage(const ArticleScreen()),
-                routes: const [
-                  // child route
-                ],
+                screen: const ArticleScreen(),
+                routes: [],
               ),
             ],
           ),
           StatefulShellBranch(
-            navigatorKey: _settingNavigatorKey,
+            navigatorKey: settingNavigatorKey,
             routes: [
-              GoRoute(
+              route(
                 path: Routes.settings,
-                name: Routes.settings.routeName,
-                pageBuilder: (context, state) =>
-                    pushPage(const SettingScreen()),
+                screen: const SettingScreen(),
                 routes: [
-                  GoRoute(
+                  route(
                     path: Routes.profile,
-                    name: Routes.profile.routeName,
-                    pageBuilder: (context, state) =>
-                        pushPage(const ProfileScreen()),
+                    screen: const ProfileScreen(),
                   ),
-                  GoRoute(
+                  route(
                     path: Routes.changePassword,
-                    name: Routes.changePassword.routeName,
-                    pageBuilder: (context, state) =>
-                        pushPage(const ChangePasswordScreen()),
+                    screen: const ChangePasswordScreen(),
                   ),
                 ],
               ),
@@ -145,4 +128,4 @@ abstract class AppRoute {
       ),
     ],
   );
-}
+});

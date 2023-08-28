@@ -28,11 +28,13 @@ void main() {
   );
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final goRouter = ref.watch(routerProvider);
+
     return ScreenUtilInit(
       designSize: Config.designSize(context),
       minTextAdapt: true,
@@ -43,7 +45,7 @@ class MainApp extends StatelessWidget {
             theme: AppTheme.lightTheme(),
             darkTheme: AppTheme.darkTheme(),
             themeMode: AppTheme.themeMode(context),
-            routerConfig: AppRoute.router,
+            routerConfig: goRouter,
             builder: (BuildContext context, Widget? child) {
               final mediaQueryData = MediaQuery.of(context);
               final scale = mediaQueryData.textScaleFactor.clamp(0.5, 1.0);
