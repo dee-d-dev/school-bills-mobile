@@ -88,13 +88,13 @@ class AuthScreenState extends State<AuthScreen> {
                   text: 'Log in',
                   onPressed: () => context.goNamed(Routes.login),
                 ),
-                Config.vGap14,
+                Config.vGap15,
                 CustomButton(
                   hPadding: 20,
                   text: 'Student sign up',
                   onPressed: () => context.goNamed(Routes.studentSignup),
                 ),
-                Config.vGap14,
+                Config.vGap15,
                 CustomButton(
                   hPadding: 20,
                   text: 'Admin sign up',

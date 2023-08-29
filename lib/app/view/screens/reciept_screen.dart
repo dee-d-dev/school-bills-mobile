@@ -63,7 +63,7 @@ class RecieptScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Config.vGap14,
+          Config.vGap15,
           CustomButton(
             hPadding: 20,
             text: 'Download receipt',

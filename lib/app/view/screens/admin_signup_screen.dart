@@ -31,22 +31,22 @@ class _AdminSignupScreenState extends State<AdminSignupScreen> {
                 onChanged: (val) {},
                 hint: 'Name',
               ),
-              Config.vGap14,
+              Config.vGap15,
               CustomTextField(
                 onChanged: (val) {},
                 hint: 'Department',
               ),
-              Config.vGap14,
+              Config.vGap15,
               CustomTextField(
                 onChanged: (val) {},
                 hint: 'Faculty',
               ),
-              Config.vGap14,
+              Config.vGap15,
               CustomTextField(
                 onChanged: (val) {},
                 hint: 'Email',
               ),
-              Config.vGap14,
+              Config.vGap15,
               CustomTextField(
                 onChanged: (val) {},
                 hint: 'Password',
@@ -59,7 +59,7 @@ class _AdminSignupScreenState extends State<AdminSignupScreen> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Config.vGap14,
+          Config.vGap15,
           CustomButton(
             hPadding: 20,
             text: 'Continue',

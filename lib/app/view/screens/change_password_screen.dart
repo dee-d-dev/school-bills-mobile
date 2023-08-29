@@ -31,7 +31,7 @@ class _LoginScreenState extends State<ChangePasswordScreen> {
                 onChanged: (val) {},
                 hint: 'Current password',
               ),
-              Config.vGap14,
+              Config.vGap15,
               CustomTextField(
                 onChanged: (val) {},
                 hint: 'New password',
@@ -44,7 +44,7 @@ class _LoginScreenState extends State<ChangePasswordScreen> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Config.vGap14,
+          Config.vGap15,
           CustomButton(
             hPadding: 20,
             text: 'Continue',

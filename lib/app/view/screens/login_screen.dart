@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onChanged: (val) {},
                 hint: 'Email or Matric Number',
               ),
-              Config.vGap14,
+              Config.vGap15,
               CustomTextField(
                 onChanged: (val) {},
                 hint: 'Password',
@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Config.vGap14,
+          Config.vGap15,
           CustomButton(
             hPadding: 20,
             text: 'Continue',

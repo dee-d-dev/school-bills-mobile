@@ -15,7 +15,7 @@ class Config {
   static double get width => 1.sw;
 
   static TextStyle get h1 => GoogleFonts.dmSans(
-        fontSize: 32.sp,
+        fontSize: 34.sp,
         fontWeight: FontWeight.w700,
         height: 1.6,
       );
@@ -27,35 +27,35 @@ class Config {
       );
 
   static TextStyle get h3 => GoogleFonts.dmSans(
-        fontSize: 28.sp,
+        fontSize: 26.sp,
         fontWeight: FontWeight.w700,
         height: 1.6,
       );
 
   static TextStyle get b1 => GoogleFonts.dmSans(
-        fontSize: 18.sp,
+        fontSize: 16.sp,
         height: 1.0,
       );
 
   static TextStyle get b1b => GoogleFonts.dmSans(
-        fontSize: 18.sp,
+        fontSize: 16.sp,
         fontWeight: FontWeight.w700,
         height: 1.0,
       );
 
   static TextStyle get b2 => GoogleFonts.dmSans(
-        fontSize: 16.sp,
+        fontSize: 14.sp,
         height: 1.0,
       );
 
   static TextStyle get b2b => GoogleFonts.dmSans(
-        fontSize: 16.sp,
+        fontSize: 14.sp,
         height: 1.0,
         fontWeight: FontWeight.w700,
       );
 
   static TextStyle get b3 => GoogleFonts.dmSans(
-        fontSize: 14.sp,
+        fontSize: 12.sp,
         height: 1.0,
       );
 
@@ -74,23 +74,24 @@ class Config {
   static bool get isMediumScreen => 1.sw > 650;
   static bool get isLargeScreen => 1.sw > 850;
 
-  static Widget get hGap5 => const SizedBox(width: 5);
-  static Widget get hGap10 => const SizedBox(width: 10);
-  static Widget get hGap14 => const SizedBox(width: 14);
-  static Widget get hGap20 => const SizedBox(width: 20);
+  static Widget get hGap5 => SizedBox(width: 5.w);
+  static Widget get hGap10 => SizedBox(width: 10.w);
+  static Widget get hGap15 => SizedBox(width: 15.w);
+  static Widget get hGap20 => SizedBox(width: 20.w);
+  static Widget get hGap30 => SizedBox(width: 30.w);
 
-  static Widget get vGap5 => const SizedBox(height: 5);
-  static Widget get vGap10 => const SizedBox(height: 10);
-  static Widget get vGap14 => const SizedBox(height: 14);
-  static Widget get vGap20 => const SizedBox(height: 20);
-  static Widget get vGap30 => const SizedBox(height: 30);
+  static Widget get vGap5 => SizedBox(height: 5.h);
+  static Widget get vGap10 => SizedBox(height: 10.h);
+  static Widget get vGap15 => SizedBox(height: 15.h);
+  static Widget get vGap20 => SizedBox(height: 20.h);
+  static Widget get vGap30 => SizedBox(height: 30.h);
 
   static Widget get mediumVGap => SizedBox(height: 1.sh * 0.05);
 
   static Size designSize(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return switch (size.width) {
-      < 650 => const Size(450, 940),
+      < 650 => const Size(393, 852),
       >= 650 && < 850 => const Size(650, 1140),
       _ => const Size(850, 1340)
     };

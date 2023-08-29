@@ -31,22 +31,22 @@ class _CreateBillScreenState extends State<CreateBillScreen> {
                 onChanged: (val) {},
                 hint: 'Name of bill',
               ),
-              Config.vGap14,
+              Config.vGap15,
               CustomTextField(
                 onChanged: (val) {},
                 hint: 'Amount',
               ),
-              Config.vGap14,
+              Config.vGap15,
               CustomTextField(
                 onChanged: (val) {},
                 hint: 'Department',
               ),
-              Config.vGap14,
+              Config.vGap15,
               CustomTextField(
                 onChanged: (val) {},
                 hint: 'Faculty',
               ),
-              Config.vGap14,
+              Config.vGap15,
               CustomTextField(
                 onChanged: (val) {},
                 hint: 'Level',
@@ -59,7 +59,7 @@ class _CreateBillScreenState extends State<CreateBillScreen> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Config.vGap14,
+          Config.vGap15,
           CustomButton(
             hPadding: 20,
             text: 'Continue',
