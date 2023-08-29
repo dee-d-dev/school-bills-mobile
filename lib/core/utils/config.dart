@@ -92,8 +92,8 @@ class Config {
     final size = MediaQuery.of(context).size;
     return switch (size.width) {
       < 650 => const Size(393, 852),
-      >= 650 && < 850 => const Size(650, 1140),
-      _ => const Size(850, 1340)
+      >= 650 && < 850 => const Size(650, 1040),
+      _ => const Size(850, 1040)
     };
   }
 }
