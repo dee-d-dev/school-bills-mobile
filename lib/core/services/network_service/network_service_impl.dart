@@ -44,18 +44,4 @@ final class NetworkServiceImpl implements NetworkService {
               throw CustomError.fromJson(error.response?.data),
         );
   }
-
-  String getErrorMessage(DioException error) {
-    final message = error.message ?? 'An error occured';
-    return switch (error.type) {
-      DioExceptionType.badResponse => 'Bad response: $message',
-      DioExceptionType.connectionError => 'Connection error: $message',
-      DioExceptionType.badCertificate => 'Bad certificate: $message',
-      DioExceptionType.cancel => 'Cancelled: $message',
-      DioExceptionType.connectionTimeout => 'Connection timeout: $message',
-      DioExceptionType.receiveTimeout => 'Recieve timeout: $message',
-      DioExceptionType.sendTimeout => 'Send timeout: $message',
-      DioExceptionType.unknown => 'Unknown: $message',
-    };
-  }
 }
