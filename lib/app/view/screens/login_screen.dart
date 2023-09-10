@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:school_bills/app/view/provider/auth_provider.dart';
+import 'package:school_bills/app/view/provider/auth_state.dart';
+import 'package:school_bills/core/platform_specific/platform_progress_indicator.dart';
 import 'package:school_bills/core/routes/routes.dart';
 import 'package:school_bills/core/utils/config.dart';
 import 'package:school_bills/core/widgets/custom_button.dart';
@@ -14,6 +18,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
+  final _emailOrMatNoCtrl = TextEditingController();
+  final _passwordCtrl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +34,12 @@ class _LoginScreenState extends State<LoginScreen> {
               Text('Log in', style: Config.h3),
               Config.vGap20,
               CustomTextField(
-                onChanged: (val) {},
+                controller: _emailOrMatNoCtrl,
                 hint: 'Email or Matric Number',
               ),
               Config.vGap15,
               CustomTextField(
-                onChanged: (val) {},
+                controller: _passwordCtrl,
                 hint: 'Password',
               )
             ],
@@ -45,11 +51,30 @@ class _LoginScreenState extends State<LoginScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Config.vGap15,
-          CustomButton(
-            hPadding: 20,
-            text: 'Continue',
-            onPressed: () => context.go(Routes.home),
-          ),
+          Consumer(builder: (context, ref, child) {
+            return switch (ref.watch(authProvider).state) {
+              AuthLoadingState.signingIn => const PlatformProgressIndicator(),
+              _ => CustomButton(
+                  hPadding: 20,
+                  text: 'Continue',
+                  onPressed: () async {
+                    final isValid = _formKey.currentState?.validate() ?? false;
+                    if (!isValid) return;
+                    await ref
+                        .watch(authProvider.notifier)
+                        .signIn(
+                          emailOrMatNo: _emailOrMatNoCtrl.text,
+                          password: _passwordCtrl.text,
+                        )
+                        .then((success) {
+                      if (success) {
+                        context.go(Routes.home);
+                      }
+                    });
+                  },
+                )
+            };
+          }),
           Config.vGap20,
         ],
       ),

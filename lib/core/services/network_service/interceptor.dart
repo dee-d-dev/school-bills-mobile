@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthInterceptor extends InterceptorsWrapper {
   static const authorization = 'Authorization';
-  static const requiresAuth = 'requiresAuthentication';
 
   final SharedPreferences preferences;
 
@@ -14,16 +14,12 @@ class AuthInterceptor extends InterceptorsWrapper {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final requestRequiresAuth = options.extra.containsKey(requiresAuth)
-        ? options.extra[requiresAuth] as bool
-        : true;
+    final sessionToken = preferences.getString('token');
+    debugPrint('SESSION TOKEN: $sessionToken');
 
-    if (requestRequiresAuth) {
-      final sessionToken = preferences.getString('token');
-
-      if (sessionToken != null) {
-        options.headers[authorization] = sessionToken;
-      }
+    if (sessionToken != null && !options.path.contains('auth')) {
+      debugPrint('SETTING TOKEN');
+      options.headers[authorization] = sessionToken;
     }
 
     super.onRequest(options, handler);

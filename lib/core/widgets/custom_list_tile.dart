@@ -15,7 +15,7 @@ class CustomListTile extends StatelessWidget {
   final IconData iconData;
   final String title;
   final Color? highlightColor;
-  final void Function() onPressed;
+  final void Function()? onPressed;
   final bool hasTrailing;
 
   @override

@@ -1,22 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:school_bills/app/view/provider/auth_provider.dart';
 import 'package:school_bills/app/view/widgets/title_card.dart';
 import 'package:school_bills/core/routes/routes.dart';
 import 'package:school_bills/core/utils/app_icons.dart';
 import 'package:school_bills/core/utils/config.dart';
 import 'package:school_bills/core/widgets/custom_button.dart';
+import 'package:school_bills/core/widgets/dialog_loader.dart';
 
-class AuthScreen extends StatefulWidget {
+class AuthScreen extends ConsumerStatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
 
   @override
-  AuthScreenState createState() => AuthScreenState();
+  ConsumerState<AuthScreen> createState() => AuthScreenState();
 }
 
-class AuthScreenState extends State<AuthScreen> {
+class AuthScreenState extends ConsumerState<AuthScreen> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      DialogLoader.request(
+        context: context,
+        request: ref.read(authProvider.notifier).silentSignIn(),
+        onDone: (success) {
+          if (success) {
+            context.go(Routes.home);
+          } else {
+            context.pop();
+          }
+        },
+      );
+    });
   }
 
   @override

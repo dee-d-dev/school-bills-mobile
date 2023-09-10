@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthState {
-  bool get signingIn => throw _privateConstructorUsedError;
+  AuthLoadingState get state => throw _privateConstructorUsedError;
   UserModel? get user => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,7 +29,7 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({bool signingIn, UserModel? user});
+  $Res call({AuthLoadingState state, UserModel? user});
 }
 
 /// @nodoc
@@ -45,14 +45,14 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? signingIn = null,
+    Object? state = null,
     Object? user = freezed,
   }) {
     return _then(_value.copyWith(
-      signingIn: null == signingIn
-          ? _value.signingIn
-          : signingIn // ignore: cast_nullable_to_non_nullable
-              as bool,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as AuthLoadingState,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -68,7 +68,7 @@ abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
       __$$_AuthStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool signingIn, UserModel? user});
+  $Res call({AuthLoadingState state, UserModel? user});
 }
 
 /// @nodoc
@@ -82,14 +82,14 @@ class __$$_AuthStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? signingIn = null,
+    Object? state = null,
     Object? user = freezed,
   }) {
     return _then(_$_AuthState(
-      signingIn: null == signingIn
-          ? _value.signingIn
-          : signingIn // ignore: cast_nullable_to_non_nullable
-              as bool,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as AuthLoadingState,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -101,18 +101,18 @@ class __$$_AuthStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AuthState implements _AuthState {
-  const _$_AuthState({this.signingIn = false, this.user = null});
+  const _$_AuthState({this.state = AuthLoadingState.idle, this.user = null});
 
   @override
   @JsonKey()
-  final bool signingIn;
+  final AuthLoadingState state;
   @override
   @JsonKey()
   final UserModel? user;
 
   @override
   String toString() {
-    return 'AuthState(signingIn: $signingIn, user: $user)';
+    return 'AuthState(state: $state, user: $user)';
   }
 
   @override
@@ -120,13 +120,12 @@ class _$_AuthState implements _AuthState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AuthState &&
-            (identical(other.signingIn, signingIn) ||
-                other.signingIn == signingIn) &&
+            (identical(other.state, state) || other.state == state) &&
             (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, signingIn, user);
+  int get hashCode => Object.hash(runtimeType, state, user);
 
   @JsonKey(ignore: true)
   @override
@@ -136,11 +135,11 @@ class _$_AuthState implements _AuthState {
 }
 
 abstract class _AuthState implements AuthState {
-  const factory _AuthState({final bool signingIn, final UserModel? user}) =
-      _$_AuthState;
+  const factory _AuthState(
+      {final AuthLoadingState state, final UserModel? user}) = _$_AuthState;
 
   @override
-  bool get signingIn;
+  AuthLoadingState get state;
   @override
   UserModel? get user;
   @override

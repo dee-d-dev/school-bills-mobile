@@ -24,4 +24,7 @@ class CustomError {
 
   factory CustomError.fromJson(Map<String, Object?> json) =>
       _$CustomErrorFromJson(json);
+
+  @override
+  String toString() => 'CustomError: $message';
 }

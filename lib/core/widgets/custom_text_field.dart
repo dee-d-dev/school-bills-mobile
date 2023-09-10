@@ -2,38 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:school_bills/core/utils/config.dart';
 
-class CustomTextField extends StatefulWidget {
-  final void Function(String) onChanged;
-  final String hint;
+class CustomTextField extends StatelessWidget {
+  final TextEditingController? controller;
+  final void Function(String)? onChanged;
+  final String? hint;
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
   final List<TextInputFormatter> inputFormatters;
 
   const CustomTextField({
     super.key,
-    required this.onChanged,
-    required this.hint,
+    this.controller,
+    this.onChanged,
+    this.hint,
     this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.done,
     this.inputFormatters = const [],
   });
 
   @override
-  State<CustomTextField> createState() => _CustomTextFieldState();
-}
-
-class _CustomTextFieldState extends State<CustomTextField> {
-  @override
   Widget build(BuildContext context) {
     return TextFormField(
-      keyboardType: widget.keyboardType,
-      textInputAction: widget.textInputAction,
-      inputFormatters: widget.inputFormatters,
-      onChanged: widget.onChanged,
+      controller: controller,
+      keyboardType: keyboardType,
+      textInputAction: textInputAction,
+      inputFormatters: inputFormatters,
+      onChanged: onChanged,
       decoration: InputDecoration(
         fillColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
         contentPadding: const EdgeInsets.all(15),
-        hintText: widget.hint,
+        hintText: hint,
         hintStyle: Config.b1,
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide.none,
@@ -42,7 +40,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       ),
       validator: (value) {
         return value == null || value.trim().isEmpty
-            ? '${widget.hint} is required'
+            ? '${hint} is required'
             : null;
       },
     );

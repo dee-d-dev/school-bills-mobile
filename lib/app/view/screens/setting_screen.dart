@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:school_bills/app/view/provider/auth_provider.dart';
 import 'package:school_bills/app/view/widgets/avatar_widget.dart';
 import 'package:school_bills/core/routes/routes.dart';
 import 'package:school_bills/core/utils/app_icons.dart';
 import 'package:school_bills/core/utils/config.dart';
 import 'package:school_bills/core/widgets/custom_list_tile.dart';
+import 'package:school_bills/core/widgets/dialog_loader.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -43,13 +46,24 @@ class SettingScreen extends StatelessWidget {
                   title: 'Change Password',
                   onPressed: () => context.goNamed(Routes.changePassword),
                 ),
-                CustomListTile(
-                  iconData: AppIcons.logout,
-                  highlightColor: Theme.of(context).colorScheme.error,
-                  title: 'Logout',
-                  hasTrailing: false,
-                  onPressed: () {},
-                ),
+                Consumer(builder: (context, ref, child) {
+                  return CustomListTile(
+                    iconData: AppIcons.logout,
+                    highlightColor: Theme.of(context).colorScheme.error,
+                    title: 'Logout',
+                    hasTrailing: false,
+                    onPressed: () async {
+                      DialogLoader.request(
+                          context: context,
+                          request: ref.watch(authProvider.notifier).logout(),
+                          onDone: (success) {
+                            if (success) {
+                              context.go(Routes.auth);
+                            }
+                          });
+                    },
+                  );
+                }),
               ],
             ),
           )
