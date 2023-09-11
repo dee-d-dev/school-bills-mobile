@@ -25,7 +25,7 @@ class _AdminSignupScreenState extends State<AdminSignupScreen> {
           key: _formKey,
           child: ListView(
             children: [
-              Text('Admin sign up', style: Config.h3),
+              Text('Admin sign up', style: Config.textTheme.titleSmall),
               Config.vGap20,
               CustomTextField(
                 onChanged: (val) {},

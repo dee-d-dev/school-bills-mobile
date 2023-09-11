@@ -25,7 +25,7 @@ class _CreateBillScreenState extends State<CreateBillScreen> {
           key: _formKey,
           child: ListView(
             children: [
-              Text('Create bill', style: Config.h3),
+              Text('Create bill', style: Config.textTheme.titleSmall),
               Config.vGap20,
               CustomTextField(
                 onChanged: (val) {},

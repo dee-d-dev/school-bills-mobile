@@ -24,7 +24,7 @@ class BillModal extends StatelessWidget {
         children: [
           Align(
               alignment: Alignment.center,
-              child: Text(110000.00.price, style: Config.h1)),
+              child: Text(110000.00.price, style: Config.textTheme.titleLarge)),
           Config.vGap30,
           const RecieptInfo(
             leading: 'Student bill',

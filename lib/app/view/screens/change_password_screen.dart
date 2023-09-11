@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:school_bills/core/routes/routes.dart';
 import 'package:school_bills/core/utils/config.dart';
 import 'package:school_bills/core/widgets/custom_button.dart';
 import 'package:school_bills/core/widgets/custom_text_field.dart';
@@ -25,7 +23,7 @@ class _LoginScreenState extends State<ChangePasswordScreen> {
           key: _formKey,
           child: ListView(
             children: [
-              Text('Change password', style: Config.h3),
+              Text('Change password', style: Config.textTheme.titleSmall),
               Config.vGap20,
               CustomTextField(
                 onChanged: (val) {},
@@ -48,7 +46,7 @@ class _LoginScreenState extends State<ChangePasswordScreen> {
           CustomButton(
             hPadding: 20,
             text: 'Continue',
-            onPressed: () => context.go(Routes.home),
+            onPressed: () {},
           ),
           Config.vGap20,
         ],

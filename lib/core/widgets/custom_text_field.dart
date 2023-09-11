@@ -28,11 +28,14 @@ class CustomTextField extends StatelessWidget {
       textInputAction: textInputAction,
       inputFormatters: inputFormatters,
       onChanged: onChanged,
+      style:
+          Config.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.normal),
       decoration: InputDecoration(
         fillColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
         contentPadding: const EdgeInsets.all(15),
         hintText: hint,
-        hintStyle: Config.b1,
+        hintStyle:
+            Config.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.normal),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(4),
@@ -40,7 +43,7 @@ class CustomTextField extends StatelessWidget {
       ),
       validator: (value) {
         return value == null || value.trim().isEmpty
-            ? '${hint} is required'
+            ? '$hint is required'
             : null;
       },
     );

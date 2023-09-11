@@ -35,7 +35,7 @@ class _StudentSignupScreenState extends State<StudentSignupScreen> {
           key: _formKey,
           child: ListView(
             children: [
-              Text('Student sign up', style: Config.h3),
+              Text('Student sign up', style: Config.textTheme.titleSmall),
               Config.vGap20,
               CustomTextField(
                 controller: _firstNameCtrl,

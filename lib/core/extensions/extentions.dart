@@ -18,6 +18,13 @@ extension StringExt on String {
   }
 
   double get price => double.parse(replaceAll(RegExp(r'[^\d.]'), ''));
+
+  String get capSentence {
+    final words = split(' ');
+    return words
+        .map((e) => "${e.substring(0, 1).toUpperCase()}${e.substring(1)}")
+        .join(' ');
+  }
 }
 
 extension ListExt on List {

@@ -6,7 +6,7 @@ abstract class AuthRepository {
   Future<Result<bool>> logout();
   Future<Result<UserModel>> silentSignIn();
   Future<Result<UserModel>> signIn({
-    required String emailOrMatNo,
+    required String email,
     required String password,
   });
   Future<Result<UserModel>> signUp({

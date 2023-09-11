@@ -17,7 +17,7 @@ class AuthInterceptor extends InterceptorsWrapper {
     final sessionToken = preferences.getString('token');
     debugPrint('SESSION TOKEN: $sessionToken');
 
-    if (sessionToken != null && !options.path.contains('auth')) {
+    if (sessionToken != null) {
       debugPrint('SETTING TOKEN');
       options.headers[authorization] = sessionToken;
     }

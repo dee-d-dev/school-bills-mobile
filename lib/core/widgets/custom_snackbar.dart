@@ -37,13 +37,15 @@ class CustomSnackBar extends StatelessWidget {
                 if (dialogModel.title != null) ...[
                   Text(
                     dialogModel.title!,
-                    style: Config.b1b.copyWith(color: Colors.white),
+                    style: Config.textTheme.bodyMedium?.copyWith(
+                        color: Colors.white, fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(height: 10),
                 ],
                 Text(
                   dialogModel.message,
-                  style: Config.b1.copyWith(color: Colors.white),
+                  style: Config.textTheme.bodyMedium
+                      ?.copyWith(color: Colors.white),
                 ),
               ],
             ),

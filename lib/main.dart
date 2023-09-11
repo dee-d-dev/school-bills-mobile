@@ -7,7 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:school_bills/core/di/service_locator.dart';
 import 'package:school_bills/core/routes/router.dart';
 import 'package:school_bills/core/utils/app_aware.dart';
-import 'package:school_bills/core/utils/config.dart';
 import 'package:school_bills/core/utils/themes.dart';
 
 void main() {
@@ -36,7 +35,7 @@ class MainApp extends ConsumerWidget {
     final goRouter = ref.watch(routerProvider);
 
     return ScreenUtilInit(
-      designSize: Config.designSize(context),
+      designSize: MediaQuery.sizeOf(context),
       minTextAdapt: true,
       builder: (context, child) {
         return AppAware(

@@ -7,7 +7,7 @@ import 'package:school_bills/app/view/screens/auth_screen.dart';
 import 'package:school_bills/app/view/screens/change_password_screen.dart';
 import 'package:school_bills/app/view/screens/create_bill_screen.dart';
 import 'package:school_bills/app/view/screens/home_screen.dart';
-import 'package:school_bills/app/view/screens/index_screen.dart';
+import 'package:school_bills/app/view/index_screen.dart';
 import 'package:school_bills/app/view/screens/login_screen.dart';
 import 'package:school_bills/app/view/screens/profile_screen.dart';
 import 'package:school_bills/app/view/screens/reciept_screen.dart';

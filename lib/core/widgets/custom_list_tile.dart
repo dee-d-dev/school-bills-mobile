@@ -26,7 +26,7 @@ class CustomListTile extends StatelessWidget {
       leading: Icon(iconData, color: highlightColor),
       title: Text(
         title,
-        style: Config.b1.copyWith(color: highlightColor),
+        style: Config.textTheme.bodyLarge?.copyWith(color: highlightColor),
       ),
       trailing: hasTrailing
           ? Icon(

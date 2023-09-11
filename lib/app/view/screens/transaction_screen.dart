@@ -13,7 +13,7 @@ class TransactionScreen extends StatelessWidget {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Transactions', style: Config.h3),
+        title: Text('Transactions', style: Config.textTheme.titleSmall),
       ),
       body: Container(
         margin: Config.contentPadding(h: 20),
@@ -28,7 +28,8 @@ class TransactionScreen extends StatelessWidget {
               leading: Icon(AppIcons.school),
               title: const Text('School fees'),
               subtitle: const Text('Paystack • Aug 15, 2023'),
-              trailing: Text(110000.00.price, style: Config.b2),
+              trailing:
+                  Text(110000.00.price, style: Config.textTheme.bodySmall),
               onTap: () => context.goNamed(Routes.reciept),
             );
           },

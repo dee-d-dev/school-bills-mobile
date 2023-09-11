@@ -18,7 +18,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _emailOrMatNoCtrl = TextEditingController();
+  final _emailCtrl = TextEditingController();
   final _passwordCtrl = TextEditingController();
 
   @override
@@ -31,10 +31,10 @@ class _LoginScreenState extends State<LoginScreen> {
           key: _formKey,
           child: ListView(
             children: [
-              Text('Log in', style: Config.h3),
+              Text('Log in', style: Config.textTheme.titleSmall),
               Config.vGap20,
               CustomTextField(
-                controller: _emailOrMatNoCtrl,
+                controller: _emailCtrl,
                 hint: 'Email or Matric Number',
               ),
               Config.vGap15,
@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     await ref
                         .watch(authProvider.notifier)
                         .signIn(
-                          emailOrMatNo: _emailOrMatNoCtrl.text,
+                          email: _emailCtrl.text,
                           password: _passwordCtrl.text,
                         )
                         .then((success) {

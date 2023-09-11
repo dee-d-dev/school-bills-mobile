@@ -10,7 +10,7 @@ class CustomButton extends StatelessWidget {
     this.icon,
     this.onPressed,
     this.hPadding = 0,
-    this.cPadding = 20,
+    this.cPadding = 15,
     this.type = ButtonType.filled,
   }) : super(key: key);
 
@@ -25,7 +25,9 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final child = Padding(
       padding: EdgeInsets.all(cPadding),
-      child: Text(text, style: Config.b1.copyWith(fontWeight: FontWeight.w600)),
+      child: Text(text,
+          style: Config.textTheme.bodyMedium
+              ?.copyWith(fontWeight: FontWeight.w600)),
     );
 
     return Padding(

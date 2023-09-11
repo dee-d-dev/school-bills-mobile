@@ -16,7 +16,7 @@ class TileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: Config.contentPadding(h: 20),
-      padding: Config.contentPadding(h: 20, v: 20),
+      padding: Config.contentPadding(h: 15, v: 15),
       decoration: BoxDecoration(
           border: Border.all(color: Colors.grey.shade200),
           borderRadius: BorderRadius.circular(8),
@@ -29,9 +29,10 @@ class TileCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: Config.b1b),
-              Config.vGap5,
-              Text(subtitle, style: Config.b2),
+              Text(title,
+                  style: Config.textTheme.bodyMedium
+                      ?.copyWith(fontWeight: FontWeight.w600)),
+              Text(subtitle),
             ],
           )
         ],

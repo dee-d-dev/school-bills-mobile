@@ -14,49 +14,46 @@ class Config {
 
   static double get width => 1.sw;
 
-  static TextStyle get h1 => GoogleFonts.dmSans(
-        fontSize: 34.sp,
-        fontWeight: FontWeight.w700,
-        height: 1.6,
-      );
-
-  static TextStyle get h2 => GoogleFonts.dmSans(
-        fontSize: 30.sp,
-        fontWeight: FontWeight.w700,
-        height: 1.6,
-      );
-
-  static TextStyle get h3 => GoogleFonts.dmSans(
-        fontSize: 26.sp,
-        fontWeight: FontWeight.w700,
-        height: 1.6,
-      );
-
-  static TextStyle get b1 => GoogleFonts.dmSans(
-        fontSize: 16.sp,
-        height: 1.0,
-      );
-
-  static TextStyle get b1b => GoogleFonts.dmSans(
-        fontSize: 16.sp,
-        fontWeight: FontWeight.w700,
-        height: 1.0,
-      );
-
-  static TextStyle get b2 => GoogleFonts.dmSans(
-        fontSize: 14.sp,
-        height: 1.0,
-      );
-
-  static TextStyle get b2b => GoogleFonts.dmSans(
-        fontSize: 14.sp,
-        height: 1.0,
-        fontWeight: FontWeight.w700,
-      );
-
-  static TextStyle get b3 => GoogleFonts.dmSans(
-        fontSize: 12.sp,
-        height: 1.0,
+  static TextTheme get textTheme => TextTheme(
+        titleLarge: GoogleFonts.sora(
+          fontSize: 32.sp,
+          fontWeight: FontWeight.w700,
+          height: 1.6,
+        ),
+        titleMedium: GoogleFonts.sora(
+          fontSize: 28.sp,
+          fontWeight: FontWeight.w700,
+          height: 1.6,
+        ),
+        titleSmall: GoogleFonts.sora(
+          fontSize: 24.sp,
+          fontWeight: FontWeight.w700,
+          height: 1.6,
+        ),
+        bodyLarge: GoogleFonts.sora(
+          fontSize: 16.sp,
+          height: 1.6,
+        ),
+        bodyMedium: GoogleFonts.sora(
+          fontSize: 14.sp,
+          height: 1.6,
+        ),
+        bodySmall: GoogleFonts.sora(
+          fontSize: 14.sp,
+          height: 1.4,
+        ),
+        labelLarge: GoogleFonts.sora(
+          fontSize: 14.sp,
+          height: 1.4,
+        ),
+        labelMedium: GoogleFonts.sora(
+          fontSize: 12.sp,
+          height: 1.0,
+        ),
+        labelSmall: GoogleFonts.sora(
+          fontSize: 12.sp,
+          height: 1.0,
+        ),
       );
 
   static EdgeInsets contentPadding({double? h, double? v}) =>
@@ -85,15 +82,4 @@ class Config {
   static Widget get vGap15 => SizedBox(height: 15.h);
   static Widget get vGap20 => SizedBox(height: 20.h);
   static Widget get vGap30 => SizedBox(height: 30.h);
-
-  static Widget get mediumVGap => SizedBox(height: 1.sh * 0.05);
-
-  static Size designSize(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    return switch (size.width) {
-      < 650 => const Size(393, 852),
-      >= 650 && < 850 => const Size(650, 1040),
-      _ => const Size(850, 1040)
-    };
-  }
 }

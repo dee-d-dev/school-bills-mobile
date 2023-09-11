@@ -2,6 +2,7 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:school_bills/core/utils/config.dart';
 
 enum ThemeOptions {
   light,
@@ -27,6 +28,7 @@ class AppTheme {
         useMaterial3: true,
         swapLegacyOnMaterial3: true,
         fontFamily: GoogleFonts.dmSans().fontFamily,
+        textTheme: Config.textTheme,
       );
 
   static ThemeData darkTheme() => FlexThemeData.dark(
@@ -42,6 +44,7 @@ class AppTheme {
         useMaterial3: true,
         swapLegacyOnMaterial3: true,
         fontFamily: GoogleFonts.dmSans().fontFamily,
+        textTheme: Config.textTheme,
       );
 
   static ThemeMode themeMode(BuildContext context) =>

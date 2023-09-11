@@ -3,17 +3,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:school_bills/app/view/provider/auth_provider.dart';
 import 'package:school_bills/app/view/widgets/avatar_widget.dart';
+import 'package:school_bills/core/extensions/extentions.dart';
 import 'package:school_bills/core/routes/routes.dart';
 import 'package:school_bills/core/utils/app_icons.dart';
 import 'package:school_bills/core/utils/config.dart';
 import 'package:school_bills/core/widgets/custom_list_tile.dart';
 import 'package:school_bills/core/widgets/dialog_loader.dart';
 
-class SettingScreen extends StatelessWidget {
+class SettingScreen extends ConsumerWidget {
   const SettingScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.read(authProvider).user;
     return Scaffold(
       backgroundColor: const Color(0xFFF2F2F2),
       body: ListView(
@@ -22,11 +24,11 @@ class SettingScreen extends StatelessWidget {
         children: [
           const AvatarWidget(),
           Text(
-            'Dotun Adetigba',
-            style: Config.h3,
+            '${user?.fullName}'.capSentence,
+            style: Config.textTheme.titleSmall,
             textAlign: TextAlign.center,
           ),
-          Text('ART1277726', style: Config.b2, textAlign: TextAlign.center),
+          Text('${user?.id}'.toUpperCase(), textAlign: TextAlign.center),
           Config.vGap20,
           Container(
             padding: Config.contentPadding(h: 15, v: 10),
@@ -59,6 +61,8 @@ class SettingScreen extends StatelessWidget {
                           onDone: (success) {
                             if (success) {
                               context.go(Routes.auth);
+                            } else {
+                              context.pop();
                             }
                           });
                     },

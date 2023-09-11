@@ -14,8 +14,9 @@ class RecieptScreen extends StatelessWidget {
       body: ListView(
         padding: Config.contentPadding(h: 20),
         children: [
-          Text('SCHOOL FEES', style: Config.b2, textAlign: TextAlign.center),
-          Text(110000.00.price, style: Config.h1, textAlign: TextAlign.center),
+          const Text('SCHOOL FEES', textAlign: TextAlign.center),
+          Text(110000.00.price,
+              style: Config.textTheme.titleLarge, textAlign: TextAlign.center),
           Config.vGap30,
           const RecieptInfo(
             leading: 'Date & Time',

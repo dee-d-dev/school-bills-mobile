@@ -11,8 +11,10 @@ class RecieptInfo extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(leading, style: Config.b2),
-        Text(trailing, style: Config.b2b),
+        Text(leading, style: Config.textTheme.bodySmall),
+        Text(trailing,
+            style: Config.textTheme.bodySmall
+                ?.copyWith(fontWeight: FontWeight.w600)),
       ],
     );
   }

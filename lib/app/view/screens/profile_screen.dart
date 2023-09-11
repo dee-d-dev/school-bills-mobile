@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:school_bills/app/view/provider/auth_provider.dart';
 import 'package:school_bills/app/view/widgets/avatar_widget.dart';
 import 'package:school_bills/app/view/widgets/reciept_info.dart';
+import 'package:school_bills/core/extensions/extentions.dart';
 import 'package:school_bills/core/utils/config.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -11,50 +14,60 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF2F2F2),
       appBar: AppBar(backgroundColor: const Color(0xFFF2F2F2)),
-      body: ListView(
-        padding: Config.contentPadding(h: 20),
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Consumer(
+        builder: (context, ref, child) {
+          final user = ref.read(authProvider).user;
+          return ListView(
+            padding: Config.contentPadding(h: 20),
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Dotun Adetigba',
-                    style: Config.h3,
-                    textAlign: TextAlign.center,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${user?.fullName}'.capSentence,
+                        style: Config.textTheme.titleSmall,
+                        textAlign: TextAlign.center,
+                      ),
+                      Text('${user?.id}'.toUpperCase(),
+                          textAlign: TextAlign.center),
+                    ],
                   ),
-                  Text('ART1277726',
-                      style: Config.b2, textAlign: TextAlign.center),
+                  const AvatarWidget(),
                 ],
               ),
-              const AvatarWidget(),
+              Config.vGap20,
+              Container(
+                padding: Config.contentPadding(h: 15, v: 30),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
+                ),
+                child: Column(
+                  children: [
+                    RecieptInfo(
+                        leading: 'Name',
+                        trailing: '${user?.fullName}'.capSentence),
+                    Config.vGap30,
+                    RecieptInfo(
+                        leading: 'Department',
+                        trailing: '${user?.department}'.capSentence),
+                    Config.vGap30,
+                    RecieptInfo(
+                        leading: 'Faculty',
+                        trailing: '${user?.faculty}'.capSentence),
+                    Config.vGap30,
+                    RecieptInfo(
+                        leading: 'Matriculation number',
+                        trailing: '${user?.matricNo}'.capSentence),
+                  ],
+                ),
+              )
             ],
-          ),
-          Config.vGap20,
-          Container(
-            padding: Config.contentPadding(h: 15, v: 30),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.white,
-            ),
-            child: Column(
-              children: [
-                const RecieptInfo(
-                    leading: 'Name', trailing: 'Adedotun Adetigba'),
-                Config.vGap30,
-                const RecieptInfo(
-                    leading: 'Department', trailing: 'Biochemisty'),
-                Config.vGap30,
-                const RecieptInfo(leading: 'Faculty', trailing: 'Life Science'),
-                Config.vGap30,
-                const RecieptInfo(
-                    leading: 'Matriculation number', trailing: 'LSC1211515'),
-              ],
-            ),
-          )
-        ],
+          );
+        },
       ),
     );
   }

@@ -45,12 +45,12 @@ final class AuthProvider extends Notifier<AuthState> {
   }
 
   Future<bool> signIn({
-    required String emailOrMatNo,
+    required String email,
     required String password,
   }) async {
     state = state.copyWith(state: AuthLoadingState.signingIn);
     final res = await authRepository.signIn(
-      emailOrMatNo: emailOrMatNo,
+      email: email,
       password: password,
     );
     state = state.copyWith(state: AuthLoadingState.idle);

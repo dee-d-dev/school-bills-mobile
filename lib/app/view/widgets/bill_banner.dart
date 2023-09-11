@@ -26,15 +26,20 @@ class BillBanner extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text('School fees • Level 300',
-              style: Config.b3.copyWith(color: Colors.white)),
-          Text(110000.00.price, style: Config.h2.copyWith(color: Colors.white)),
+              style:
+                  Config.textTheme.labelSmall?.copyWith(color: Colors.white)),
+          Text(110000.00.price,
+              style:
+                  Config.textTheme.titleMedium?.copyWith(color: Colors.white)),
           Container(
-            padding: Config.contentPadding(h: 20, v: 10),
+            padding: Config.contentPadding(h: 20, v: 8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               color: Colors.green,
             ),
-            child: Text('Paid', style: Config.b2.copyWith(color: Colors.white)),
+            child: Text('Paid',
+                style:
+                    Config.textTheme.bodySmall?.copyWith(color: Colors.white)),
           )
         ],
       ),

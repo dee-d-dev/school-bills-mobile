@@ -25,7 +25,9 @@ class HomeScreen extends StatelessWidget {
           Config.vGap20,
           const BillBanner(),
           Config.vGap20,
-          Text('Student Bills', style: Config.b1b),
+          Text('Student Bills',
+              style: Config.textTheme.bodyLarge
+                  ?.copyWith(fontWeight: FontWeight.w600)),
           Config.vGap20,
           ListTile(
             selected: true,
@@ -75,7 +77,8 @@ class HomeScreen extends StatelessWidget {
                       Icon(AppIcons.addOl, color: Colors.white),
                       Config.hGap10,
                       Text('Add bill',
-                          style: Config.b1.copyWith(color: Colors.white)),
+                          style: Config.textTheme.bodyMedium
+                              ?.copyWith(color: Colors.white)),
                     ],
                   ),
                 ),

@@ -36,13 +36,15 @@ class ArticleBanner extends StatelessWidget {
               ),
               Config.hGap5,
               Text('The Gaurdian • 19h',
-                  style: Config.b3.copyWith(color: Colors.white)),
+                  style: Config.textTheme.labelSmall
+                      ?.copyWith(color: Colors.white)),
             ],
           ),
           Config.vGap10,
           Text(
               'Lorem ipsum dolor sit amet consectetur. Blandit quam ac porttitor venenatis suspendisse proin.',
-              style: Config.b2b.copyWith(color: Colors.white)),
+              style: Config.textTheme.bodySmall
+                  ?.copyWith(color: Colors.white, fontWeight: FontWeight.w600)),
         ],
       ),
     );

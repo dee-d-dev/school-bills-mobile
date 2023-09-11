@@ -49,7 +49,7 @@ final class AuthRepositoryImpl implements AuthRepository {
       if (email == null || password == null) {
         return Result.error(CustomError.message('No email or password found'));
       }
-      return signIn(emailOrMatNo: email, password: password);
+      return signIn(email: email, password: password);
     } on CustomError catch (error) {
       debugPrint('$error');
       return Result.error(error);
@@ -61,22 +61,22 @@ final class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Result<UserModel>> signIn({
-    required String emailOrMatNo,
+    required String email,
     required String password,
   }) async {
     try {
       final res = await networkService.post(
         '/auth/signin',
-        data: {'email': emailOrMatNo, 'password': password},
+        data: {'email': email, 'password': password},
       );
-      final token = res.headers.value('token');
+      final data = res.data['data'];
+      print(data);
 
-      if (token != null) {
-        preferences.setString('token', token);
-        preferences.setString('email', emailOrMatNo);
-        preferences.setString('password', password);
-      }
-      return Result.success(UserModel.fromJson(res.data['data']));
+      preferences.setString('token', data['token']);
+      preferences.setString('email', email);
+      preferences.setString('password', password);
+
+      return Result.success(UserModel.fromJson(data['user']));
     } on CustomError catch (error) {
       debugPrint('$error');
       return Result.error(error);
@@ -105,14 +105,13 @@ final class AuthRepositoryImpl implements AuthRepository {
           'password': password
         },
       );
-      final token = res.headers.value('token');
+      final data = res.data['data'];
 
-      if (token != null) {
-        preferences.setString('token', token);
-        preferences.setString('email', email);
-        preferences.setString('password', password);
-      }
-      return Result.success(UserModel.fromJson(res.data['data']));
+      preferences.setString('token', data['token']);
+      preferences.setString('email', email);
+      preferences.setString('password', password);
+
+      return Result.success(UserModel.fromJson(data['user']));
     } on CustomError catch (error) {
       debugPrint('$error');
       return Result.error(error);
