@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthInterceptor extends InterceptorsWrapper {
@@ -15,11 +14,9 @@ class AuthInterceptor extends InterceptorsWrapper {
     RequestInterceptorHandler handler,
   ) async {
     final sessionToken = preferences.getString('token');
-    debugPrint('SESSION TOKEN: $sessionToken');
 
     if (sessionToken != null) {
-      debugPrint('SETTING TOKEN');
-      options.headers[authorization] = sessionToken;
+      options.headers[authorization] = 'Bearer $sessionToken';
     }
 
     super.onRequest(options, handler);
@@ -30,7 +27,6 @@ class AuthInterceptor extends InterceptorsWrapper {
     if (err.response?.statusCode == 401 /* unauthorized */) {
       // logout
     }
-
     super.onError(err, handler);
   }
 }

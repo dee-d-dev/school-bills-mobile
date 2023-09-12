@@ -39,6 +39,6 @@ class AppIcons {
   static IconData get transactionOl => Icons.data_usage_outlined;
   static IconData get location => Iconsax.location;
   static IconData get star => CupertinoIcons.star_fill;
-  static IconData get article => Iconsax.clipboard5;
-  static IconData get articleOl => Iconsax.clipboard;
+  static IconData get article => Icons.article;
+  static IconData get articleOl => Icons.article_outlined;
 }

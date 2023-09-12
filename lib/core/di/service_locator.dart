@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:school_bills/app/data/repository/auth_repository_impl.dart';
+import 'package:school_bills/app/data/repository/bills_repository_impl.dart';
+import 'package:school_bills/app/domain/bills_repository.dart';
 import 'package:school_bills/app/domain/auth_repository.dart';
 import 'package:school_bills/app/view/provider/auth_provider.dart';
+import 'package:school_bills/app/view/provider/bills_provider.dart';
 import 'package:school_bills/core/services/network_service/interceptor.dart';
 import 'package:school_bills/core/services/dialog_service/dialog_service.dart';
 import 'package:school_bills/core/services/dialog_service/dialog_service_impl.dart';
@@ -23,15 +26,24 @@ Future<void> initServiceLocator() async {
     sendTimeout: timeout,
     contentType: 'application/json',
   ));
+  final interceptor = AuthInterceptor(preferences: sharedPreference);
+  dio.interceptors.add(interceptor);
 
-  // Feature: Auth
-  // Provider
+  // Auth Provider
   sl.registerFactory(
       () => AuthProvider(authRepository: sl(), dialogService: sl()));
-  // Repository
+  // Auth Repository
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
         networkService: sl(),
         preferences: sl(),
+      ));
+
+  // Bills Provider
+  sl.registerFactory(
+      () => BillsProvider(billsRepository: sl(), dialogService: sl()));
+  // Bills Repository
+  sl.registerLazySingleton<BillsRepository>(() => BillsRepositoryImpl(
+        networkService: sl(),
       ));
 
   // Externals
@@ -40,8 +52,6 @@ Future<void> initServiceLocator() async {
 
   // Services
   sl.registerLazySingleton<DialogService>(() => DialogServiceImpl());
-  final interceptor = AuthInterceptor(preferences: sl());
-  dio.interceptors.add(interceptor);
   sl.registerLazySingleton<NetworkService>(() => NetworkServiceImpl(
         dio: sl(),
       ));

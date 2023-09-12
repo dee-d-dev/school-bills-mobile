@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:school_bills/app/data/models/result.dart';
 import 'package:school_bills/core/services/network_service/network_service.dart';
@@ -18,7 +16,7 @@ final class NetworkServiceImpl implements NetworkService {
     return await dio
         .get(
           path,
-          data: json.encode(data),
+          data: data,
           queryParameters: queryParameters,
         )
         .onError<DioException>(
@@ -36,7 +34,7 @@ final class NetworkServiceImpl implements NetworkService {
     return await dio
         .post(
           path,
-          data: json.encode(data),
+          data: data,
           queryParameters: queryParameters,
         )
         .onError<DioException>(

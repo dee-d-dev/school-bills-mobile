@@ -25,6 +25,14 @@ extension StringExt on String {
         .map((e) => "${e.substring(0, 1).toUpperCase()}${e.substring(1)}")
         .join(' ');
   }
+
+  bool get isEmail {
+    if (isEmpty) return false;
+    const emailRegex =
+        r"""^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+""";
+
+    return RegExp(emailRegex).hasMatch(this);
+  }
 }
 
 extension ListExt on List {

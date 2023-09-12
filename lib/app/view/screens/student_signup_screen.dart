@@ -21,6 +21,7 @@ class _StudentSignupScreenState extends State<StudentSignupScreen> {
   final _firstNameCtrl = TextEditingController();
   final _lastNameCtrl = TextEditingController();
   final _departmentCtrl = TextEditingController();
+  final _facultyCtrl = TextEditingController();
   final _matricNoCtrl = TextEditingController();
   final _emailCtrl = TextEditingController();
   final _passwordCtrl = TextEditingController();
@@ -50,6 +51,11 @@ class _StudentSignupScreenState extends State<StudentSignupScreen> {
               CustomTextField(
                 controller: _departmentCtrl,
                 hint: 'Department',
+              ),
+              Config.vGap15,
+              CustomTextField(
+                controller: _facultyCtrl,
+                hint: 'Faculty',
               ),
               Config.vGap15,
               CustomTextField(
@@ -91,6 +97,8 @@ class _StudentSignupScreenState extends State<StudentSignupScreen> {
                           firstName: _firstNameCtrl.text,
                           lastName: _lastNameCtrl.text,
                           department: _departmentCtrl.text,
+                          faculty: _facultyCtrl.text,
+                          matricNo: _matricNoCtrl.text,
                           email: _emailCtrl.text,
                           password: _passwordCtrl.text,
                         )

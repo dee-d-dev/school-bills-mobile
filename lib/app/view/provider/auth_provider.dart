@@ -20,6 +20,8 @@ final class AuthProvider extends Notifier<AuthState> {
     required String firstName,
     required String lastName,
     required String department,
+    required String faculty,
+    required String matricNo,
     required String email,
     required String password,
   }) async {
@@ -28,6 +30,8 @@ final class AuthProvider extends Notifier<AuthState> {
       firstName: firstName,
       lastName: lastName,
       department: department,
+      faculty: faculty,
+      matricNo: matricNo,
       email: email,
       password: password,
     );
@@ -45,12 +49,12 @@ final class AuthProvider extends Notifier<AuthState> {
   }
 
   Future<bool> signIn({
-    required String email,
+    required String emailOrMatNo,
     required String password,
   }) async {
     state = state.copyWith(state: AuthLoadingState.signingIn);
     final res = await authRepository.signIn(
-      email: email,
+      emailOrMatNo: emailOrMatNo,
       password: password,
     );
     state = state.copyWith(state: AuthLoadingState.idle);

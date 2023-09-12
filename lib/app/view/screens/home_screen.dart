@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:school_bills/app/view/provider/bills_provider.dart';
 import 'package:school_bills/app/view/widgets/avatar_widget.dart';
 import 'package:school_bills/app/view/widgets/bill_banner.dart';
 import 'package:school_bills/app/view/widgets/bill_modal.dart';
@@ -7,8 +9,21 @@ import 'package:school_bills/core/routes/routes.dart';
 import 'package:school_bills/core/utils/app_icons.dart';
 import 'package:school_bills/core/utils/config.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(billsProvider.notifier).getPaidBills();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
