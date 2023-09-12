@@ -24,8 +24,9 @@ class UserModel {
     required this.email,
   });
 
-  String get fullName => '$firstName $lastName';
-  String get abbv => '${firstName.split('').first}${lastName.split('').first}';
+  String get fullName => '${firstName.trim()} ${lastName.trim()}';
+  String get abbv =>
+      '${firstName.trim().split('').first}${lastName.trim().split('').first}';
 
   factory UserModel.fromJson(Map<String, Object?> json) =>
       _$UserModelFromJson(json);
