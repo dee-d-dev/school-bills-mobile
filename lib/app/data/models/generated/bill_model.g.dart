@@ -15,6 +15,12 @@ BillModel _$BillModelFromJson(Map<String, dynamic> json) => BillModel(
       bankName: json['bank_name'] as String,
       faculty: json['faculty'] as String?,
       department: json['department'] as String?,
+      createdAt: json['created_at'] == null
+          ? null
+          : DateTime.parse(json['created_at'] as String),
+      updatedAt: json['updated_at'] == null
+          ? null
+          : DateTime.parse(json['updated_at'] as String),
     );
 
 Map<String, dynamic> _$BillModelToJson(BillModel instance) {
@@ -35,5 +41,7 @@ Map<String, dynamic> _$BillModelToJson(BillModel instance) {
 
   writeNotNull('faculty', instance.faculty);
   writeNotNull('department', instance.department);
+  writeNotNull('created_at', instance.createdAt?.toIso8601String());
+  writeNotNull('updated_at', instance.updatedAt?.toIso8601String());
   return val;
 }
