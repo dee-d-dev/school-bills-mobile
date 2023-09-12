@@ -12,6 +12,8 @@ class BillModel {
   final String bankName;
   final String? faculty;
   final String? department;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   const BillModel({
     required this.id,
@@ -22,6 +24,8 @@ class BillModel {
     required this.bankName,
     required this.faculty,
     required this.department,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   factory BillModel.fromJson(Map<String, Object?> json) =>
