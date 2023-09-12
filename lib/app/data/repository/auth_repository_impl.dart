@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:school_bills/app/data/models/result.dart';
 import 'package:school_bills/app/data/models/user_model.dart';
 import 'package:school_bills/app/domain/auth_repository.dart';
+import 'package:school_bills/core/extensions/extentions.dart';
 import 'package:school_bills/core/services/network_service/network_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -31,6 +32,8 @@ final class AuthRepositoryImpl implements AuthRepository {
     try {
       await networkService.post('/auth/logout');
       await preferences.remove('token');
+      await preferences.remove('emailOrMatNo');
+      await preferences.remove('password');
       return const Result.success(true);
     } on CustomError catch (error) {
       debugPrint('$error');
@@ -44,12 +47,12 @@ final class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Result<UserModel>> silentSignIn() async {
     try {
-      final email = preferences.getString('email');
+      final emailOrMatNo = preferences.getString('emailOrMatNo');
       final password = preferences.getString('password');
-      if (email == null || password == null) {
+      if (emailOrMatNo == null || password == null) {
         return Result.error(CustomError.message('No email or password found'));
       }
-      return signIn(email: email, password: password);
+      return signIn(emailOrMatNo: emailOrMatNo, password: password);
     } on CustomError catch (error) {
       debugPrint('$error');
       return Result.error(error);
@@ -61,19 +64,21 @@ final class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Result<UserModel>> signIn({
-    required String email,
+    required String emailOrMatNo,
     required String password,
   }) async {
     try {
       final res = await networkService.post(
         '/auth/signin',
-        data: {'email': email, 'password': password},
+        data: {
+          emailOrMatNo.isEmail ? 'email' : 'matric_no': emailOrMatNo,
+          'password': password
+        },
       );
       final data = res.data['data'];
-      print(data);
 
       preferences.setString('token', data['token']);
-      preferences.setString('email', email);
+      preferences.setString('emailOrMatNo', emailOrMatNo);
       preferences.setString('password', password);
 
       return Result.success(UserModel.fromJson(data['user']));
@@ -91,6 +96,8 @@ final class AuthRepositoryImpl implements AuthRepository {
     required String firstName,
     required String lastName,
     required String department,
+    required String faculty,
+    required String matricNo,
     required String email,
     required String password,
   }) async {
@@ -101,6 +108,8 @@ final class AuthRepositoryImpl implements AuthRepository {
           'first_name': firstName,
           'last_name': lastName,
           'department': department,
+          'faculty': faculty,
+          'matric_no': matricNo,
           'email': email,
           'password': password
         },
@@ -108,7 +117,7 @@ final class AuthRepositoryImpl implements AuthRepository {
       final data = res.data['data'];
 
       preferences.setString('token', data['token']);
-      preferences.setString('email', email);
+      preferences.setString('emailOrMatNo', email);
       preferences.setString('password', password);
 
       return Result.success(UserModel.fromJson(data['user']));
