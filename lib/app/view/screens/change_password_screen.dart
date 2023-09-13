@@ -16,8 +16,8 @@ class ChangePasswordScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<ChangePasswordScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _currentPasswordCtrl = TextEditingController();
-  final _newPasswordCtrl = TextEditingController();
+  final _passwordCtrl = TextEditingController();
+  final _confirmPasswordCtrl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +32,13 @@ class _LoginScreenState extends State<ChangePasswordScreen> {
               Text('Change password', style: Config.textTheme.titleSmall),
               Config.vGap20,
               CustomTextField(
-                controller: _currentPasswordCtrl,
-                hint: 'Current password',
+                controller: _passwordCtrl,
+                hint: 'New password',
               ),
               Config.vGap15,
               CustomTextField(
-                controller: _newPasswordCtrl,
-                hint: 'New password',
+                controller: _confirmPasswordCtrl,
+                hint: 'Confirm password',
               )
             ],
           ),
@@ -62,14 +62,14 @@ class _LoginScreenState extends State<ChangePasswordScreen> {
                     await ref
                         .watch(authProvider.notifier)
                         .changePassword(
-                          currentPassword: _currentPasswordCtrl.text,
-                          newPassword: _newPasswordCtrl.text,
+                          password: _passwordCtrl.text,
+                          confirmPassword: _confirmPasswordCtrl.text,
                         )
                         .then((success) {
                       if (success) {
                         setState(() {
-                          _currentPasswordCtrl.clear();
-                          _newPasswordCtrl.clear();
+                          _passwordCtrl.clear();
+                          _confirmPasswordCtrl.clear();
                         });
                       }
                     });

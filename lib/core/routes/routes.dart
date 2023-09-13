@@ -8,7 +8,7 @@ abstract class Routes {
   static String createBill = 'create_bill';
 
   static String transaction = '/transaction';
-  static String reciept = 'reciept';
+  static String reciept = 'reciept/:id';
 
   static String article = '/article';
 

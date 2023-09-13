@@ -16,7 +16,7 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(backgroundColor: const Color(0xFFF2F2F2)),
       body: Consumer(
         builder: (context, ref, child) {
-          final user = ref.read(authProvider).user;
+          final user = ref.read(authProvider).user!;
           return ListView(
             padding: Config.contentPadding(h: 20),
             children: [
@@ -28,12 +28,12 @@ class ProfileScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${user?.fullName}'.capSentence,
+                          user.fullName.capSentence,
                           style: Config.textTheme.titleSmall,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.center,
                         ),
-                        Text('${user?.id}'.toUpperCase(),
+                        Text(user.id.toUpperCase(),
                             textAlign: TextAlign.center),
                       ],
                     ),
@@ -51,20 +51,25 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     RecieptInfo(
-                        leading: 'Name',
-                        trailing: '${user?.fullName}'.capSentence),
-                    Config.vGap30,
-                    RecieptInfo(
-                        leading: 'Department',
-                        trailing: '${user?.department}'.capSentence),
-                    Config.vGap30,
-                    RecieptInfo(
-                        leading: 'Faculty',
-                        trailing: '${user?.faculty}'.capSentence),
-                    Config.vGap30,
-                    RecieptInfo(
-                        leading: 'Matriculation number',
-                        trailing: '${user?.matricNo}'.capSentence),
+                        leading: 'Name', trailing: user.fullName.capSentence),
+                    if ((user.department ?? '').isNotEmpty) ...[
+                      Config.vGap30,
+                      RecieptInfo(
+                          leading: 'Department',
+                          trailing: '${user.department}'.capSentence),
+                    ],
+                    if ((user.faculty ?? '').isNotEmpty) ...[
+                      Config.vGap30,
+                      RecieptInfo(
+                          leading: 'Faculty',
+                          trailing: '${user.faculty}'.capSentence),
+                    ],
+                    if ((user.matricNo ?? '').isNotEmpty) ...[
+                      Config.vGap30,
+                      RecieptInfo(
+                          leading: 'Matriculation number',
+                          trailing: '${user.matricNo}'.capSentence),
+                    ],
                   ],
                 ),
               )

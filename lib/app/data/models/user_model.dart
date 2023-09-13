@@ -25,6 +25,9 @@ class UserModel {
   });
 
   bool get isStudent => role == 'student';
+  String? get adminPosition => (faculty ?? '').isEmpty
+      ? 'Department • $department'
+      : 'Faculty • $faculty';
 
   String get fullName => '${firstName.trim()} ${lastName.trim()}';
   String get abbv =>

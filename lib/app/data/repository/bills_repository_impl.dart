@@ -13,7 +13,6 @@ final class BillsRepositoryImpl implements BillsRepository {
   Future<Result<List<BillModel>>> getAllBills() async {
     try {
       final res = await networkService.get('/bills/all');
-      print(res.data);
 
       final bills =
           (res.data['data'] as List).map((e) => BillModel.fromJson(e)).toList();
@@ -32,7 +31,6 @@ final class BillsRepositoryImpl implements BillsRepository {
   Future<Result<List<BillModel>>> getMyBills() async {
     try {
       final res = await networkService.get('/profile/my-bills');
-      print(res.data);
 
       final bills =
           (res.data['data'] as List).map((e) => BillModel.fromJson(e)).toList();
@@ -51,7 +49,6 @@ final class BillsRepositoryImpl implements BillsRepository {
   Future<Result<PayReferenceModel>> payBill(String id) async {
     try {
       final res = await networkService.post('/bills/pay/$id');
-      print(res.data);
 
       final reference = PayReferenceModel.fromJson(res.data['data']);
 
@@ -72,8 +69,26 @@ final class BillsRepositoryImpl implements BillsRepository {
       required String department,
       required String faculty,
       required String bankName,
-      required String accountNo}) {
-    // TODO: implement createBill
-    throw UnimplementedError();
+      required String accountNo}) async {
+    try {
+      await networkService.post(
+        '/bills/create',
+        data: {
+          'title': title,
+          'amount': amount,
+          'account_no': accountNo,
+          'bank_name': bankName,
+          'department': department,
+          'faculty': faculty,
+        },
+      );
+      return const Result.success(true);
+    } on CustomError catch (error) {
+      debugPrint('$error');
+      return Result.error(error);
+    } catch (error) {
+      debugPrint('$error');
+      return Result.error(CustomError.message('Failed to get reference'));
+    }
   }
 }

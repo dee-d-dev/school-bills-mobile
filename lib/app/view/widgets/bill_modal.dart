@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:school_bills/app/data/models/bill_model.dart';
+import 'package:school_bills/app/data/models/user_model.dart';
 import 'package:school_bills/app/view/provider/bills_provider.dart';
 import 'package:school_bills/app/view/provider/bills_state.dart';
 import 'package:school_bills/app/view/widgets/reciept_info.dart';
@@ -12,8 +13,9 @@ import 'package:school_bills/core/utils/config.dart';
 import 'package:school_bills/core/widgets/custom_button.dart';
 
 class BillModal extends StatelessWidget {
+  final UserModel user;
   final BillModel bill;
-  const BillModal({super.key, required this.bill});
+  const BillModal({super.key, required this.bill, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -42,16 +44,17 @@ class BillModal extends StatelessWidget {
             leading: 'Amount',
             trailing: bill.amount.price,
           ),
-          Config.vGap30,
-          RecieptInfo(
-            leading: 'Department',
-            trailing: bill.department?.capSentence ?? '',
-          ),
-          Config.vGap30,
-          RecieptInfo(
-            leading: 'Faculty',
-            trailing: bill.faculty?.capSentence ?? '',
-          ),
+          if ((user.department ?? '').isNotEmpty) ...[
+            Config.vGap30,
+            RecieptInfo(
+                leading: 'Department',
+                trailing: '${user.department}'.capSentence),
+          ],
+          if ((user.faculty ?? '').isNotEmpty) ...[
+            Config.vGap30,
+            RecieptInfo(
+                leading: 'Faculty', trailing: '${user.faculty}'.capSentence),
+          ],
           Config.vGap30,
           Image.asset('assets/images/paystack.png'),
           Consumer(

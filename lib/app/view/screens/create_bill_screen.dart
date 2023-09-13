@@ -32,6 +32,8 @@ class _CreateBillScreenState extends State<CreateBillScreen> {
     return Consumer(
       builder: (context, ref, child) {
         final user = ref.read(authProvider).user!;
+        _facultyCtrl.text = (user.faculty ?? '').capSentence;
+        _departmentCtrl.text = (user.department ?? '').capSentence;
         return Scaffold(
           appBar: AppBar(),
           body: Padding(
@@ -61,11 +63,13 @@ class _CreateBillScreenState extends State<CreateBillScreen> {
                     CustomTextField(
                       controller: _facultyCtrl,
                       hint: 'Faculty',
-                    )
-                  else
+                      readOnly: true,
+                    ),
+                  if ((user.department ?? '').isNotEmpty)
                     CustomTextField(
                       controller: _departmentCtrl,
                       hint: 'Department',
+                      readOnly: true,
                     ),
                   Config.vGap15,
                   CustomTextField(
@@ -94,6 +98,7 @@ class _CreateBillScreenState extends State<CreateBillScreen> {
                 BillsLoadingState.creatingBill =>
                   const PlatformProgressIndicator(),
                 _ => CustomButton(
+                    hPadding: 20,
                     text: 'Continue',
                     onPressed: () async {
                       final isValid =
@@ -103,7 +108,7 @@ class _CreateBillScreenState extends State<CreateBillScreen> {
                           .read(billsProvider.notifier)
                           .createBill(
                             title: _nameCtrl.text,
-                            amount: double.parse(_amountCtrl.text),
+                            amount: _amountCtrl.text.price,
                             department: _departmentCtrl.text,
                             faculty: _facultyCtrl.text,
                             bankName: _bankNameCtrl.text,

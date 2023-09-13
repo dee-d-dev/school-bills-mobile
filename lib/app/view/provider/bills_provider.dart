@@ -56,7 +56,7 @@ final class BillsProvider extends Notifier<BillsState> {
     required String bankName,
     required String accountNo,
   }) async {
-    state = state.copyWith(state: BillsLoadingState.payinBill);
+    state = state.copyWith(state: BillsLoadingState.creatingBill);
     final res = await billsRepository.createBill(
       title: title,
       amount: amount,
@@ -67,7 +67,11 @@ final class BillsProvider extends Notifier<BillsState> {
     );
     state = state.copyWith(state: BillsLoadingState.idle);
     return res.when(
-      success: (success) => success,
+      success: (success) {
+        dialogService.displayMessage('Bill created successfully',
+            status: Status.success);
+        return true;
+      },
       error: (error) {
         dialogService.displayMessage(error.message);
         return false;

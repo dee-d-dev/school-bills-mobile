@@ -36,12 +36,12 @@ ArticleModel _$ArticleModelFromJson(Map<String, dynamic> json) => ArticleModel(
       title: json['title'] as String,
       publisher: json['publisher'] as String,
       link: json['link'] as String,
-      providerPublishTime: json['provider_publish_time'] as int?,
+      providerPublishTime: json['providerPublishTime'] as int,
       type: json['type'] as String,
       thumbnail: json['thumbnail'] == null
           ? null
           : Thumbnail.fromJson(json['thumbnail'] as Map<String, dynamic>),
-      relatedTickers: (json['related_tickers'] as List<dynamic>?)
+      relatedTickers: (json['relatedTickers'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
     );
@@ -52,6 +52,8 @@ Map<String, dynamic> _$ArticleModelToJson(ArticleModel instance) {
     'title': instance.title,
     'publisher': instance.publisher,
     'link': instance.link,
+    'providerPublishTime': instance.providerPublishTime,
+    'type': instance.type,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -60,9 +62,7 @@ Map<String, dynamic> _$ArticleModelToJson(ArticleModel instance) {
     }
   }
 
-  writeNotNull('provider_publish_time', instance.providerPublishTime);
-  val['type'] = instance.type;
   writeNotNull('thumbnail', instance.thumbnail?.toJson());
-  writeNotNull('related_tickers', instance.relatedTickers);
+  writeNotNull('relatedTickers', instance.relatedTickers);
   return val;
 }

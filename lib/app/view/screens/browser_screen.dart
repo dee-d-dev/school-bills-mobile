@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:go_router/go_router.dart';
 import 'package:school_bills/core/utils/config.dart';
 import 'package:school_bills/core/widgets/progress_bar.dart';
 
@@ -66,8 +67,8 @@ class _BrowserScreenState extends State<BrowserScreen> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
         title: Text(
-          'School bills',
-          style: Config.textTheme.bodyLarge,
+          url,
+          style: Config.textTheme.bodyMedium,
         ),
       ),
       body: Column(
@@ -89,6 +90,9 @@ class _BrowserScreenState extends State<BrowserScreen> {
                 webViewController = controller;
               },
               onLoadStart: (controller, url) {
+                if (url.toString().contains('paystack/webhook?trxref')) {
+                  context.pop();
+                }
                 setState(() {
                   this.url = url.toString();
                 });

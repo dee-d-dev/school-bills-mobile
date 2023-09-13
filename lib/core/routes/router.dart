@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:school_bills/app/data/models/transaction_model.dart';
 import 'package:school_bills/app/view/screens/admin_signup_screen.dart';
 import 'package:school_bills/app/view/screens/auth_screen.dart';
 import 'package:school_bills/app/view/screens/browser_screen.dart';
@@ -100,8 +99,8 @@ final routerProvider = Provider<GoRouter>((ref) {
                     path: Routes.reciept,
                     screen: null,
                     pageBuilder: (context, state) {
-                      return pushPage(RecieptScreen(
-                          transaction: state.extra as TransactionModel));
+                      return pushPage(
+                          RecieptScreen(id: state.pathParameters['id'] ?? ''));
                     },
                   ),
                 ],

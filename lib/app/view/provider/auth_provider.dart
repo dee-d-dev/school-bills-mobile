@@ -82,13 +82,13 @@ final class AuthProvider extends Notifier<AuthState> {
   }
 
   Future<bool> changePassword({
-    required String currentPassword,
-    required String newPassword,
+    required String password,
+    required String confirmPassword,
   }) async {
     state = state.copyWith(state: AuthLoadingState.changingPassword);
     final res = await authRepository.changePassword(
-      currentPassword: currentPassword,
-      newPassword: newPassword,
+      password: password,
+      confirmPassword: confirmPassword,
     );
     state = state.copyWith(state: AuthLoadingState.idle);
     return res.when(
@@ -107,7 +107,10 @@ final class AuthProvider extends Notifier<AuthState> {
   Future<bool> logout() async {
     final res = await authRepository.logout();
     return res.when(
-      success: (success) => success,
+      success: (success) {
+        state = state.copyWith(user: null);
+        return success;
+      },
       error: (error) {
         dialogService.displayMessage(error.message);
         return false;

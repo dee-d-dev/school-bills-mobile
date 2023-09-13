@@ -73,7 +73,6 @@ final class TransactionsRepositoryImpl implements TransactionsRepository {
   Future<Result<List<TransactionModel>>> getMyTransactions() async {
     try {
       final res = await networkService.get('/profile/transactions');
-      print(res.data);
 
       final transactions = (res.data['data'] as List)
           .map((e) => TransactionModel.fromJson(e))

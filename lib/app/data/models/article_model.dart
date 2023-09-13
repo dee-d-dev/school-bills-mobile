@@ -40,13 +40,13 @@ class Thumbnail {
   Map<String, dynamic> toJson() => _$ThumbnailToJson(this);
 }
 
-@JsonSerializable(includeIfNull: false)
+@JsonSerializable(includeIfNull: false, fieldRename: FieldRename.none)
 class ArticleModel {
   final String uuid;
   final String title;
   final String publisher;
   final String link;
-  final int? providerPublishTime;
+  final int providerPublishTime;
   final String type;
   final Thumbnail? thumbnail;
   final List<String>? relatedTickers;

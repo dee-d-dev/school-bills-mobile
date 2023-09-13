@@ -3,8 +3,8 @@ import 'package:school_bills/app/data/models/user_model.dart';
 
 abstract class AuthRepository {
   Future<Result<bool>> changePassword({
-    required String currentPassword,
-    required String newPassword,
+    required String password,
+    required String confirmPassword,
   });
   Future<Result<bool>> logout();
   Future<Result<UserModel>> silentSignIn();
