@@ -14,9 +14,12 @@ final class AuthRepositoryImpl implements AuthRepository {
       {required this.networkService, required this.preferences});
 
   @override
-  Future<Result<bool>> changePassword() async {
+  Future<Result<bool>> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  }) async {
     try {
-      await networkService.get('/auth/signin');
+      await networkService.get('/auth/ccccccccccccc');
       return const Result.success(true);
     } on CustomError catch (error) {
       debugPrint('$error');

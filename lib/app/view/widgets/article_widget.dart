@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:school_bills/app/data/models/article_model.dart';
 import 'package:school_bills/core/utils/config.dart';
+import 'package:school_bills/core/widgets/cached_image.dart';
 
 class ArticleWidget extends StatelessWidget {
-  const ArticleWidget({
-    super.key,
-  });
+  final ArticleModel article;
+  const ArticleWidget({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: Config.contentPadding(v: 15),
-      height: 160,
+      height: 130,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
             child: Column(
@@ -22,23 +23,20 @@ class ArticleWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Container(
+                    CachedImage(
+                      url: article.thumbnail?.lowRes.url ?? '',
                       height: 20,
                       width: 20,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
+                      radius: 4,
                     ),
                     Config.hGap5,
-                    Text('The Gaurdian • 19h',
+                    Text('${article.publisher} • 19h',
                         style: Config.textTheme.labelSmall),
                   ],
                 ),
                 Config.vGap10,
-                Text(
-                    'Lorem ipsum dolor sit amet consectetur. Blandit quam ac porttitor venenatis suspendisse proin. Blandit quam ac porttitor venenatis suspendisse proin. Blandit quam ac porttitor venenatis suspendisse proin.',
-                    maxLines: 5,
+                Text(article.title,
+                    maxLines: 3,
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
                     style: Config.textTheme.bodySmall
@@ -47,13 +45,11 @@ class ArticleWidget extends StatelessWidget {
             ),
           ),
           Config.hGap10,
-          Container(
+          CachedImage(
+            url: article.thumbnail?.lowRes.url ?? '',
             height: 80,
             width: 80,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(4),
-              color: Theme.of(context).colorScheme.primary,
-            ),
+            radius: 4,
           ),
         ],
       ),

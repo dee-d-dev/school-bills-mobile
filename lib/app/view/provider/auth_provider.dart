@@ -81,6 +81,29 @@ final class AuthProvider extends Notifier<AuthState> {
     );
   }
 
+  Future<bool> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  }) async {
+    state = state.copyWith(state: AuthLoadingState.changingPassword);
+    final res = await authRepository.changePassword(
+      currentPassword: currentPassword,
+      newPassword: newPassword,
+    );
+    state = state.copyWith(state: AuthLoadingState.idle);
+    return res.when(
+      success: (success) {
+        dialogService.displayMessage('Password changed successfully',
+            status: Status.success);
+        return true;
+      },
+      error: (error) {
+        dialogService.displayMessage(error.message);
+        return false;
+      },
+    );
+  }
+
   Future<bool> logout() async {
     final res = await authRepository.logout();
     return res.when(

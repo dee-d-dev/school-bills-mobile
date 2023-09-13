@@ -41,4 +41,5 @@ class AppIcons {
   static IconData get star => CupertinoIcons.star_fill;
   static IconData get article => Icons.article;
   static IconData get articleOl => Icons.article_outlined;
+  static IconData get filter => Icons.filter_list;
 }

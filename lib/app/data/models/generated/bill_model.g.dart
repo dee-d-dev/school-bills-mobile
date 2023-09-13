@@ -13,14 +13,11 @@ BillModel _$BillModelFromJson(Map<String, dynamic> json) => BillModel(
       title: json['title'] as String,
       accountNo: json['account_no'] as String,
       bankName: json['bank_name'] as String,
+      hasPaid: json['hasPaid'] as bool,
       faculty: json['faculty'] as String?,
       department: json['department'] as String?,
-      createdAt: json['created_at'] == null
-          ? null
-          : DateTime.parse(json['created_at'] as String),
-      updatedAt: json['updated_at'] == null
-          ? null
-          : DateTime.parse(json['updated_at'] as String),
+      createdAt: DateTime.parse(json['created_at'] as String),
+      updatedAt: DateTime.parse(json['updated_at'] as String),
     );
 
 Map<String, dynamic> _$BillModelToJson(BillModel instance) {
@@ -31,6 +28,7 @@ Map<String, dynamic> _$BillModelToJson(BillModel instance) {
     'title': instance.title,
     'account_no': instance.accountNo,
     'bank_name': instance.bankName,
+    'hasPaid': instance.hasPaid,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -41,7 +39,7 @@ Map<String, dynamic> _$BillModelToJson(BillModel instance) {
 
   writeNotNull('faculty', instance.faculty);
   writeNotNull('department', instance.department);
-  writeNotNull('created_at', instance.createdAt?.toIso8601String());
-  writeNotNull('updated_at', instance.updatedAt?.toIso8601String());
+  val['created_at'] = instance.createdAt.toIso8601String();
+  val['updated_at'] = instance.updatedAt.toIso8601String();
   return val;
 }

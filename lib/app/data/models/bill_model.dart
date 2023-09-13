@@ -10,10 +10,12 @@ class BillModel {
   final String title;
   final String accountNo;
   final String bankName;
+  @JsonKey(name: 'hasPaid')
+  final bool hasPaid;
   final String? faculty;
   final String? department;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
   const BillModel({
     required this.id,
@@ -22,6 +24,7 @@ class BillModel {
     required this.title,
     required this.accountNo,
     required this.bankName,
+    required this.hasPaid,
     required this.faculty,
     required this.department,
     required this.createdAt,

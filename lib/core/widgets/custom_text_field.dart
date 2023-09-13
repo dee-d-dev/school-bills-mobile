@@ -6,6 +6,8 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
   final void Function(String)? onChanged;
   final String? hint;
+  final bool readOnly;
+  final bool optional;
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
   final List<TextInputFormatter> inputFormatters;
@@ -15,6 +17,8 @@ class CustomTextField extends StatelessWidget {
     this.controller,
     this.onChanged,
     this.hint,
+    this.readOnly = false,
+    this.optional = false,
     this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.done,
     this.inputFormatters = const [],
@@ -28,6 +32,7 @@ class CustomTextField extends StatelessWidget {
       textInputAction: textInputAction,
       inputFormatters: inputFormatters,
       onChanged: onChanged,
+      readOnly: readOnly,
       style:
           Config.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.normal),
       decoration: InputDecoration(
@@ -41,11 +46,13 @@ class CustomTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(4),
         ),
       ),
-      validator: (value) {
-        return value == null || value.trim().isEmpty
-            ? '$hint is required'
-            : null;
-      },
+      validator: optional
+          ? null
+          : (value) {
+              return value == null || value.trim().isEmpty
+                  ? '$hint is required'
+                  : null;
+            },
     );
   }
 }

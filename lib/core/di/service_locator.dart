@@ -1,11 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:school_bills/app/data/repository/article_repository_impl.dart';
 import 'package:school_bills/app/data/repository/auth_repository_impl.dart';
 import 'package:school_bills/app/data/repository/bills_repository_impl.dart';
+import 'package:school_bills/app/data/repository/transactions_repository_impl.dart';
+import 'package:school_bills/app/domain/articles_repository.dart';
 import 'package:school_bills/app/domain/bills_repository.dart';
 import 'package:school_bills/app/domain/auth_repository.dart';
+import 'package:school_bills/app/domain/transactions_repository.dart';
+import 'package:school_bills/app/view/provider/article_provider.dart';
 import 'package:school_bills/app/view/provider/auth_provider.dart';
 import 'package:school_bills/app/view/provider/bills_provider.dart';
+import 'package:school_bills/app/view/provider/transactions_provider.dart';
 import 'package:school_bills/core/services/network_service/interceptor.dart';
 import 'package:school_bills/core/services/dialog_service/dialog_service.dart';
 import 'package:school_bills/core/services/dialog_service/dialog_service_impl.dart';
@@ -45,6 +51,21 @@ Future<void> initServiceLocator() async {
   sl.registerLazySingleton<BillsRepository>(() => BillsRepositoryImpl(
         networkService: sl(),
       ));
+
+  // Article Provider
+  sl.registerFactory(() => ArticleProvider(articleRepository: sl()));
+  // Article Repository
+  sl.registerLazySingleton<ArticleRepository>(() => ArticleRepositoryImpl(
+        networkService: sl(),
+      ));
+
+  // Transactions Provider
+  sl.registerFactory(() => TransactionsProvider(transactionsRepository: sl()));
+  // Transactions Repository
+  sl.registerLazySingleton<TransactionsRepository>(
+      () => TransactionsRepositoryImpl(
+            networkService: sl(),
+          ));
 
   // Externals
   sl.registerLazySingleton<SharedPreferences>(() => sharedPreference);

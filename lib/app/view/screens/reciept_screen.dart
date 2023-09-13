@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:school_bills/app/data/models/transaction_model.dart';
 import 'package:school_bills/app/view/widgets/reciept_info.dart';
 import 'package:school_bills/core/extensions/extentions.dart';
 import 'package:school_bills/core/utils/config.dart';
 import 'package:school_bills/core/widgets/custom_button.dart';
 
 class RecieptScreen extends StatelessWidget {
-  const RecieptScreen({super.key});
+  final TransactionModel transaction;
+  const RecieptScreen({super.key, required this.transaction});
 
   @override
   Widget build(BuildContext context) {
@@ -14,38 +16,34 @@ class RecieptScreen extends StatelessWidget {
       body: ListView(
         padding: Config.contentPadding(h: 20),
         children: [
-          const Text('SCHOOL FEES', textAlign: TextAlign.center),
-          Text(110000.00.price,
+          Text(transaction.title.toUpperCase(), textAlign: TextAlign.center),
+          Text(transaction.amount.toDouble().price,
               style: Config.textTheme.titleLarge, textAlign: TextAlign.center),
           Config.vGap30,
-          const RecieptInfo(
+          RecieptInfo(
             leading: 'Date & Time',
-            trailing: '08/14/23, 07:48:19',
+            trailing:
+                '${transaction.paidAt.formatStroke}, ${transaction.paidAt.formatTime}',
           ),
           Config.vGap30,
-          const RecieptInfo(
+          RecieptInfo(
             leading: 'Student bill',
-            trailing: 'School fee',
+            trailing: transaction.title.capSentence,
           ),
           Config.vGap30,
           RecieptInfo(
             leading: 'Amount',
-            trailing: 110000.00.price,
+            trailing: transaction.amount.toDouble().price,
           ),
           Config.vGap30,
-          const RecieptInfo(
-            leading: 'Level',
-            trailing: '300',
-          ),
-          Config.vGap30,
-          const RecieptInfo(
+          RecieptInfo(
             leading: 'Department',
-            trailing: 'Life Sciences',
+            trailing: transaction.department.capSentence,
           ),
           Config.vGap30,
-          const RecieptInfo(
+          RecieptInfo(
             leading: 'Faculty',
-            trailing: 'Biochemistry',
+            trailing: transaction.faculty.capSentence,
           ),
           Config.vGap30,
           const RecieptInfo(
@@ -53,9 +51,9 @@ class RecieptScreen extends StatelessWidget {
             trailing: 'Paystack',
           ),
           Config.vGap30,
-          const RecieptInfo(
+          RecieptInfo(
             leading: 'Status',
-            trailing: 'Successful',
+            trailing: transaction.status.capSentence,
           ),
           Config.vGap30,
         ],

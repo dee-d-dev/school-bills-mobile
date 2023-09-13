@@ -24,6 +24,8 @@ class UserModel {
     required this.email,
   });
 
+  bool get isStudent => role == 'student';
+
   String get fullName => '${firstName.trim()} ${lastName.trim()}';
   String get abbv =>
       '${firstName.trim().split('').first}${lastName.trim().split('').first}';

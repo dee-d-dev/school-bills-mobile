@@ -23,17 +23,20 @@ class ProfileScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${user?.fullName}'.capSentence,
-                        style: Config.textTheme.titleSmall,
-                        textAlign: TextAlign.center,
-                      ),
-                      Text('${user?.id}'.toUpperCase(),
-                          textAlign: TextAlign.center),
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${user?.fullName}'.capSentence,
+                          style: Config.textTheme.titleSmall,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
+                        ),
+                        Text('${user?.id}'.toUpperCase(),
+                            textAlign: TextAlign.center),
+                      ],
+                    ),
                   ),
                   const AvatarWidget(),
                 ],

@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:school_bills/app/data/models/bill_model.dart';
+import 'package:school_bills/app/view/provider/bills_provider.dart';
+import 'package:school_bills/app/view/provider/bills_state.dart';
 import 'package:school_bills/app/view/widgets/reciept_info.dart';
 import 'package:school_bills/core/extensions/extentions.dart';
+import 'package:school_bills/core/platform_specific/platform_progress_indicator.dart';
+import 'package:school_bills/core/routes/routes.dart';
 import 'package:school_bills/core/utils/config.dart';
 import 'package:school_bills/core/widgets/custom_button.dart';
 
 class BillModal extends StatelessWidget {
-  const BillModal({
-    super.key,
-  });
+  final BillModel bill;
+  const BillModal({super.key, required this.bill});
 
   @override
   Widget build(BuildContext context) {
@@ -24,32 +30,54 @@ class BillModal extends StatelessWidget {
         children: [
           Align(
               alignment: Alignment.center,
-              child: Text(110000.00.price, style: Config.textTheme.titleLarge)),
+              child:
+                  Text(bill.amount.price, style: Config.textTheme.titleLarge)),
           Config.vGap30,
-          const RecieptInfo(
+          RecieptInfo(
             leading: 'Student bill',
-            trailing: 'School fees',
+            trailing: bill.title.capSentence,
           ),
           Config.vGap30,
           RecieptInfo(
             leading: 'Amount',
-            trailing: 110000.00.price,
+            trailing: bill.amount.price,
           ),
           Config.vGap30,
-          const RecieptInfo(
+          RecieptInfo(
             leading: 'Department',
-            trailing: 'Life Sciences',
+            trailing: bill.department?.capSentence ?? '',
           ),
           Config.vGap30,
-          const RecieptInfo(
+          RecieptInfo(
             leading: 'Faculty',
-            trailing: 'Biochemistry',
+            trailing: bill.faculty?.capSentence ?? '',
           ),
           Config.vGap30,
           Image.asset('assets/images/paystack.png'),
-          CustomButton(
-            text: 'Confirm',
-            onPressed: () {},
+          Consumer(
+            builder: (context, ref, child) {
+              return switch (ref.watch(billsProvider).state) {
+                BillsLoadingState.payinBill =>
+                  const PlatformProgressIndicator(),
+                _ => CustomButton(
+                    text: 'Confirm',
+                    onPressed: () async {
+                      ref
+                          .read(billsProvider.notifier)
+                          .payBill(bill.id)
+                          .then((url) async {
+                        if (url == null) return;
+                        await context
+                            .push(Routes.browser, extra: url)
+                            .then((_) {
+                          context.pop();
+                        });
+                        ref.read(billsProvider.notifier).getMyBills();
+                      });
+                    },
+                  ),
+              };
+            },
           ),
         ],
       ),

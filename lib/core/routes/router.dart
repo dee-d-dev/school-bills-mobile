@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:school_bills/app/data/models/transaction_model.dart';
 import 'package:school_bills/app/view/screens/admin_signup_screen.dart';
 import 'package:school_bills/app/view/screens/auth_screen.dart';
+import 'package:school_bills/app/view/screens/browser_screen.dart';
 import 'package:school_bills/app/view/screens/change_password_screen.dart';
 import 'package:school_bills/app/view/screens/create_bill_screen.dart';
 import 'package:school_bills/app/view/screens/home_screen.dart';
@@ -60,6 +62,13 @@ final routerProvider = Provider<GoRouter>((ref) {
           route(path: Routes.adminSignup, screen: const AdminSignupScreen()),
         ],
       ),
+      route(
+        path: Routes.browser,
+        screen: null,
+        pageBuilder: (context, state) {
+          return pushPage(BrowserScreen(url: (state.extra ?? '') as String));
+        },
+      ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return IndexScreen(navigationShell: navigationShell);
@@ -89,7 +98,11 @@ final routerProvider = Provider<GoRouter>((ref) {
                 routes: [
                   route(
                     path: Routes.reciept,
-                    screen: const RecieptScreen(),
+                    screen: null,
+                    pageBuilder: (context, state) {
+                      return pushPage(RecieptScreen(
+                          transaction: state.extra as TransactionModel));
+                    },
                   ),
                 ],
               ),

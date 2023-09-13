@@ -48,15 +48,26 @@ final class BillsProvider extends Notifier<BillsState> {
     );
   }
 
-  Future<bool> getPaidBills() async {
-    state = state.copyWith(state: BillsLoadingState.getingAllBills);
-    final res = await billsRepository.getPaidBills();
+  Future<bool> createBill({
+    required String title,
+    required double amount,
+    required String department,
+    required String faculty,
+    required String bankName,
+    required String accountNo,
+  }) async {
+    state = state.copyWith(state: BillsLoadingState.payinBill);
+    final res = await billsRepository.createBill(
+      title: title,
+      amount: amount,
+      department: department,
+      faculty: faculty,
+      bankName: bankName,
+      accountNo: accountNo,
+    );
     state = state.copyWith(state: BillsLoadingState.idle);
     return res.when(
-      success: (bills) {
-        state = state.copyWith(allBills: bills);
-        return true;
-      },
+      success: (success) => success,
       error: (error) {
         dialogService.displayMessage(error.message);
         return false;
@@ -64,19 +75,48 @@ final class BillsProvider extends Notifier<BillsState> {
     );
   }
 
-  Future<bool> getUnpaidBills() async {
-    state = state.copyWith(state: BillsLoadingState.getingAllBills);
-    final res = await billsRepository.getUnpaidBills();
+  Future<String?> payBill(String id) async {
+    state = state.copyWith(state: BillsLoadingState.payinBill);
+    final res = await billsRepository.payBill(id);
     state = state.copyWith(state: BillsLoadingState.idle);
     return res.when(
-      success: (bills) {
-        state = state.copyWith(allBills: bills);
-        return true;
-      },
+      success: (reference) => reference.authorizationUrl,
       error: (error) {
         dialogService.displayMessage(error.message);
-        return false;
+        return null;
       },
     );
   }
+
+  // Future<bool> getPaidBills() async {
+  //   state = state.copyWith(state: BillsLoadingState.getingAllBills);
+  //   final res = await billsRepository.getPaidBills();
+  //   state = state.copyWith(state: BillsLoadingState.idle);
+  //   return res.when(
+  //     success: (bills) {
+  //       state = state.copyWith(allBills: bills);
+  //       return true;
+  //     },
+  //     error: (error) {
+  //       dialogService.displayMessage(error.message);
+  //       return false;
+  //     },
+  //   );
+  // }
+
+  // Future<bool> getUnpaidBills() async {
+  //   state = state.copyWith(state: BillsLoadingState.getingAllBills);
+  //   final res = await billsRepository.getUnpaidBills();
+  //   state = state.copyWith(state: BillsLoadingState.idle);
+  //   return res.when(
+  //     success: (bills) {
+  //       state = state.copyWith(allBills: bills);
+  //       return true;
+  //     },
+  //     error: (error) {
+  //       dialogService.displayMessage(error.message);
+  //       return false;
+  //     },
+  //   );
+  // }
 }

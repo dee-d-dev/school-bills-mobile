@@ -84,7 +84,6 @@ class _StudentSignupScreenState extends State<StudentSignupScreen> {
           Consumer(builder: (context, ref, child) {
             return switch (ref.watch(authProvider).state) {
               AuthLoadingState.signingUp => const PlatformProgressIndicator(),
-              AuthLoadingState.signingIn => const PlatformProgressIndicator(),
               _ => CustomButton(
                   hPadding: 20,
                   text: 'Continue',

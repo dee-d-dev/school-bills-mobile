@@ -6,9 +6,8 @@ part 'generated/bills_state.freezed.dart';
 enum BillsLoadingState {
   idle,
   getingAllBills,
-  getingMyBills,
-  getingPaidBills,
-  getingUnpaidBills
+  creatingBill,
+  payinBill,
 }
 
 @freezed

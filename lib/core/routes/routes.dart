@@ -15,6 +15,8 @@ abstract class Routes {
   static String settings = '/settings';
   static String profile = 'profile';
   static String changePassword = 'change_password';
+
+  static String browser = '/broswer';
 }
 
 extension Name on String {

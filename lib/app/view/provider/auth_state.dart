@@ -3,7 +3,7 @@ import 'package:school_bills/app/data/models/user_model.dart';
 
 part 'generated/auth_state.freezed.dart';
 
-enum AuthLoadingState { idle, signingUp, signingIn }
+enum AuthLoadingState { idle, signingUp, signingIn, changingPassword }
 
 @freezed
 class AuthState with _$AuthState {
